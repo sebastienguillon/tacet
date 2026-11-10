@@ -80,6 +80,10 @@ Ce champ n’accepte qu’une adresse pour toutes les langues ; la page anglaise
 
 ## Notes de version
 
+### 2026.11.10
+
+Choisissez où Tacet s’exécute, en haut de son menu : sur tous les sites, comme avant ; seulement sur les sites que vous activez, pour qu’il ne touche à aucun autre ; ou sur aucun. Zap now fonctionne toujours sur la page en cours, quel que soit le choix. Sur un site où Tacet est désactivé, il ne change plus rien pendant le chargement de la page.
+
 ### 2026.10.20
 
 Première version. Tacet masque les murs de consentement, les fenêtres de cookies et les fenêtres de lettre d’information, de notifications et d’anti-bloqueur de publicité qui s’ouvrent d’elles-mêmes, avec les voiles derrière elles et le blocage du défilement qu’elles laissent, sans cliquer sur Accepter ni Refuser. Il rétablit le contenu qu’un mur a flouté ou désactivé, laisse en place ce que vous ouvrez vous-même, et s’efface quand vous ouvrez les réglages de cookies d’un site. Son menu liste ce qu’il a masqué et pourquoi, et permet de masquer ce qui reste, d’annuler ses changements sur une page ou de le désactiver pour un site.

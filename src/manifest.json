@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Tacet",
-  "version": "2026.10.20",
+  "version": "2026.11.10",
   "description": "Hides consent walls, cookie popups and the scroll locks they leave, without clicking Accept or Refuse.",
   "icons": {
     "16": "icons/icon-16.png",

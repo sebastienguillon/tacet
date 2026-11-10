@@ -76,6 +76,10 @@ https://sebastienguillon.github.io/tacet/privacy.html
 
 ## Release notes
 
+### 2026.11.10
+
+Choose where Tacet runs, from the top of its menu: on all sites, as before; only on the sites you switch on, so it leaves every other site untouched; or on none. Zap now still works on the current page in every mode. On a site where Tacet is off, it no longer changes anything while the page loads.
+
 ### 2026.10.20
 
 First release. Tacet hides consent walls, cookie popups, and the newsletter, notification and ad-blocker popups that appear on their own, with the backdrops behind them and the scroll locks they leave, without clicking Accept or Refuse. It restores content a wall blurred or disabled, leaves alone what you open yourself, and steps aside when you open a site's cookie settings. Its menu lists what it hid and why, and can hide what is left, undo its changes on a page, or switch it off for a site.
