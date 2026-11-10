@@ -98,9 +98,9 @@
         <ul>
           <li>
             Dans le stockage des extensions du navigateur, sur cet appareil uniquement (sans
-            synchronisation) : la liste des sites où vous avez désactivé Tacet, le fait qu’il masque
-            ou non les bandeaux de cookies qui ne bloquent pas la page, et l’activation ou non du
-            journal de débogage.
+            synchronisation) : là où Tacet s’exécute (tous les sites, les sites choisis ou aucun),
+            les sites où vous l’avez activé ou désactivé, le fait qu’il masque ou non les bandeaux
+            de cookies qui ne bloquent pas la page, et l’activation ou non du journal de débogage.
           </li>
           <li>
             La liste de ce que Tacet a changé sur une page reste dans la mémoire de cette page, pour
@@ -122,21 +122,23 @@
 
         <h2 id="permissions">Autorisations</h2>
         <ul>
-          <li><code>storage</code>, pour conserver les trois réglages décrits plus haut.</li>
+          <li><code>storage</code>, pour conserver les réglages décrits plus haut.</li>
           <li>
             L’accès à tous les sites. Tacet doit s’exécuter sur chaque page pour y trouver ses murs
             ; Chrome l’affiche comme « Lire et modifier toutes vos données sur tous les sites web »,
             Firefox comme « Accéder à vos données pour tous les sites web ». Tacet s’en sert
-            uniquement pour masquer les murs et rétablir la page comme décrit ici.
+            uniquement pour masquer les murs et rétablir la page comme décrit ici. Sur un site où il
+            est désactivé, il lit seulement ses propres réglages et laisse la page intacte.
           </li>
           <li>Sur Firefox, Tacet déclare ne collecter aucune donnée.</li>
         </ul>
 
         <h2 id="choices">Vos choix</h2>
         <p>
-          Depuis la fenêtre de Tacet, vous pouvez le désactiver pour un site, annuler ses
-          changements sur la page en cours, ou l’empêcher de masquer les bandeaux de cookies qui ne
-          bloquent pas la page. Supprimer l’extension efface ses réglages. Rien sur vous n’est
+          Depuis la fenêtre de Tacet, vous pouvez l’exécuter sur tous les sites, seulement sur les
+          sites que vous choisissez, ou sur aucun, l’activer ou le désactiver pour un site, annuler
+          ses changements sur la page en cours, ou l’empêcher de masquer les bandeaux de cookies qui
+          ne bloquent pas la page. Supprimer l’extension efface ses réglages. Rien sur vous n’est
           conservé ailleurs.
         </p>
 

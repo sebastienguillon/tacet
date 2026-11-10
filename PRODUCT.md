@@ -26,9 +26,9 @@ Tacet never answers consent. It hides the wall without clicking Accept or Refuse
 
 ## Operating Context
 
-- A content script runs at `document_start` in the top frame of every http/https page. There is no background script, the only permission is `storage`, and the extension makes no network requests.
-- The toolbar popup is the only interface. It switches Tacet off for the current site, toggles the hiding of non-blocking cookie banners (on by default), turns on a debug log in the page console, hides whatever is left (**Zap now**), restores the page (**Undo on this page**), and lists every element hidden or repaired, with the reason.
-- Settings live in the browser's extension storage: disabled sites, the banner toggle, debug.
+- A content script runs at `document_start` in the top frame of every http/https page. On a site where Tacet is off, it reads its settings and leaves the page untouched. There is no background script, the only permission is `storage`, and the extension makes no network requests.
+- The toolbar popup is the only interface. It chooses where Tacet runs (**All sites**, the default; **Chosen sites**, only the sites switched on; **Off**), switches Tacet on or off for the current site, toggles the hiding of non-blocking cookie banners (on by default), turns on a debug log in the page console, hides whatever is left (**Zap now**), restores the page (**Undo on this page**), and lists every element hidden or repaired, with the reason.
+- Settings live in the browser's extension storage: the mode, the choice for each site, the banner toggle, debug.
 - Distribution: the Chrome Web Store and addons.mozilla.org, with a public GitHub Pages site (homepage, privacy policy, support) at https://sebastienguillon.github.io/tacet/, as for the sibling extension `sg-x`. The store listing text is in `store/`.
 - Development: `pnpm check` (lint, format, behaviour tests in Chromium and Firefox, Mozilla's linter) and `pnpm probe` on real sites; see README.md.
 
@@ -49,7 +49,7 @@ Constraints:
 - Does not try to get around subscription paywalls.
 - Does not restore content a wall script removed or truncated; processes the top frame only; does not undo locks made with `wheel`/`touchmove` listeners.
 
-Terminology: wall, overlay, popup, banner, corner box, scroll lock, signature (a known vendor's container), CMP (consent management platform), Zap now, Undo.
+Terminology: wall, overlay, popup, banner, corner box, scroll lock, signature (a known vendor's container), CMP (consent management platform), Zap now, Undo, the modes All sites, Chosen sites and Off.
 
 Open decisions:
 

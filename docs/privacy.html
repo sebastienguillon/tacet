@@ -94,9 +94,9 @@
         <h2 id="stores">What it keeps</h2>
         <ul>
           <li>
-            In the browser’s extension storage, on this device only (it does not sync): the list of
-            sites where you switched Tacet off, whether it hides cookie banners that do not block
-            the page, and whether debug logging is on.
+            In the browser’s extension storage, on this device only (it does not sync): where Tacet
+            runs (all sites, chosen sites or none), the sites you switched it on or off for, whether
+            it hides cookie banners that do not block the page, and whether debug logging is on.
           </li>
           <li>
             The list of what Tacet changed on a page stays in that page’s memory, so that its popup
@@ -117,21 +117,23 @@
 
         <h2 id="permissions">Permissions</h2>
         <ul>
-          <li><code>storage</code>, to keep the three settings described above.</li>
+          <li><code>storage</code>, to keep the settings described above.</li>
           <li>
             Access to all websites. Tacet has to run on every page to find its walls; Chrome shows
             this as “Read and change all your data on all websites”, Firefox as “Access your data
             for all websites”. Tacet uses it only to hide walls and restore the page as described on
-            this page.
+            this page. On a site where it is off, it reads only its own settings and leaves the page
+            alone.
           </li>
           <li>On Firefox, Tacet declares that it collects no data.</li>
         </ul>
 
         <h2 id="choices">Your choices</h2>
         <p>
-          From Tacet’s popup, you can switch it off for a site, undo its changes on the current
-          page, or stop it from hiding cookie banners that do not block the page. Removing the
-          extension deletes its settings. Nothing about you is kept anywhere else.
+          From Tacet’s popup, you can run it on all sites, only on the sites you choose, or on none,
+          switch it on or off for a site, undo its changes on the current page, or stop it from
+          hiding cookie banners that do not block the page. Removing the extension deletes its
+          settings. Nothing about you is kept anywhere else.
         </p>
 
         <h2 id="website">This website</h2>

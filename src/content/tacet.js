@@ -160,7 +160,10 @@
   const T0 = performance.now();
   const now = () => performance.now() - T0;
 
-  let active = true; // false when disabled for this host or undone on this page
+  // Off until the settings say Tacet runs on this host, so a site it is off for is
+  // never touched. Also off after Undo on this page; on after Zap now.
+  let active = TEST;
+  let siteOn = null; // what the settings say for this host; null until they are read
   let sigOn = true; // false once the user opens cookie settings on purpose
   let done = new WeakSet();
   const userOwned = new WeakSet();
@@ -950,7 +953,7 @@
   // ------------------------------------------------------------- lifecycle
 
   function onGesture(e) {
-    if (!e.isTrusted) return;
+    if (!active || !e.isTrusted) return;
     // Presses (pointerdown, Enter, Space) only time the gesture: some menus open on
     // them. Cookie settings are released on the click itself.
     const isPress = e.type === "pointerdown" || e.type === "keydown";
@@ -1038,19 +1041,43 @@
     if (on === active) return;
     active = on;
     if (on) {
-      document.documentElement.removeAttribute("data-tacet-off");
+      watch();
+      // Vendor containers parsed while the settings were read: hide them now, not
+      // on the next frame.
+      if (sigOn) for (const el of document.querySelectorAll(SIG_ALL)) hideSignature(el);
       schedule();
     } else {
+      observer.disconnect();
       undoAll();
-      document.documentElement.setAttribute("data-tacet-off", "");
     }
+  }
+
+  // Settings in extension storage (src/popup/popup.js writes them):
+  //   mode: "on" (default) runs on every site, "sites" only on the sites switched
+  //         on, "off" on none;
+  //   sites: { host: true | false }, the user's choice for each site, which wins
+  //         over the mode's default in "on" and "sites";
+  //   disabledHosts: { host: true }, the sites switched off before modes existed.
+  // popup.js has the same rule in runsOn().
+  const SETTINGS = ["mode", "sites", "disabledHosts", "debug", "banners"];
+  function runsOn(s) {
+    if (s.mode === "off") return false;
+    const choice = s.sites?.[host];
+    if (typeof choice === "boolean") return choice;
+    if (s.disabledHosts?.[host] === true) return false;
+    return s.mode !== "sites";
   }
 
   function applySettings(s) {
     settings.debug = TEST || !!s.debug;
     settings.banners = s.banners !== false;
-    const disabled = s.disabledHosts && s.disabledHosts[host];
-    setActive(!disabled);
+    // Only a change in what the settings say for this host switches Tacet on or
+    // off, so changing another setting does not undo a Zap or redo an Undo.
+    const on = runsOn(s);
+    if (on !== siteOn) {
+      siteOn = on;
+      setActive(on);
+    }
     publish();
   }
 
@@ -1073,61 +1100,66 @@
     return false;
   }
 
-  function start() {
-    const observer = new MutationObserver((records) => {
-      if (!active) return;
-      let urgent = false;
-      for (const r of records) {
-        if (lastHide >= 0) {
-          // The vendor flagging <html>/<body> (again) means its dialog is up: repair.
-          if (
-            r.attributeName === "class" &&
-            (r.target === document.body || r.target === document.documentElement)
-          ) {
-            const f = wallFlagged();
-            if (f && !flagSeen) contentDirty = true;
-            flagSeen = f;
-          }
-          // Class and style changes right after a press are the page reacting to the
-          // user (menus, filters, loading states), not the wall. New content still
-          // counts; the repair itself waits for the press grace and open layers.
-          if (!contentDirty && (r.type === "childList" || now() - lastGesture >= gestureGrace))
-            contentDirty = nearTop(r);
+  // Watches the page only while Tacet is active on it.
+  const observer = new MutationObserver((records) => {
+    if (!active) return;
+    let urgent = false;
+    for (const r of records) {
+      if (lastHide >= 0) {
+        // The vendor flagging <html>/<body> (again) means its dialog is up: repair.
+        if (
+          r.attributeName === "class" &&
+          (r.target === document.body || r.target === document.documentElement)
+        ) {
+          const f = wallFlagged();
+          if (f && !flagSeen) contentDirty = true;
+          flagSeen = f;
         }
-        for (const n of r.addedNodes) {
-          if (n.nodeType !== 1) continue;
-          if (sigOn) matchSignatures(n);
-          // Portals appended to <body>/<html>: check now so they never paint.
-          const p = n.parentNode;
-          if (!urgent && (p === document.body || p === document.documentElement)) {
-            try {
-              urgent = getComputedStyle(n).position === "fixed";
-            } catch {
-              /* ignore */
-            }
+        // Class and style changes right after a press are the page reacting to the
+        // user (menus, filters, loading states), not the wall. New content still
+        // counts; the repair itself waits for the press grace and open layers.
+        if (!contentDirty && (r.type === "childList" || now() - lastGesture >= gestureGrace))
+          contentDirty = nearTop(r);
+      }
+      for (const n of r.addedNodes) {
+        if (n.nodeType !== 1) continue;
+        if (sigOn) matchSignatures(n);
+        // Portals appended to <body>/<html>: check now so they never paint.
+        const p = n.parentNode;
+        if (!urgent && (p === document.body || p === document.documentElement)) {
+          try {
+            urgent = getComputedStyle(n).position === "fixed";
+          } catch {
+            /* ignore */
           }
         }
       }
-      if (urgent && !pending) {
-        pending = true;
-        requestAnimationFrame(() => {
-          pending = false;
-          lastRun = now();
-          try {
-            scan(false);
-          } catch (e) {
-            log(e);
-          }
-        });
-      } else schedule();
-    });
+    }
+    if (urgent && !pending) {
+      pending = true;
+      requestAnimationFrame(() => {
+        pending = false;
+        lastRun = now();
+        try {
+          scan(false);
+        } catch (e) {
+          log(e);
+        }
+      });
+    } else schedule();
+  });
+  function watch() {
     observer.observe(document, {
       childList: true,
       subtree: true,
       attributes: true,
       attributeFilter: ["class", "style", "open", "hidden", "inert", "aria-hidden", "aria-modal"],
     });
+  }
 
+  function start() {
+    if (active) watch(); // test mode; otherwise once the settings are read
+    // Every listener and timer below does nothing while Tacet is off.
     addEventListener("click", onGesture, { capture: true, passive: true });
     // Some menus open on pointerdown or from the keyboard, before any click.
     addEventListener("pointerdown", onGesture, { capture: true, passive: true });
@@ -1150,21 +1182,20 @@
   // ------------------------------------------------------------ wiring
 
   if (ext) {
-    ext.storage.local.get(["disabledHosts", "debug", "banners"]).then(applySettings, () => {});
+    // Unreadable settings mean the defaults: on, as before there were settings.
+    const read = () => ext.storage.local.get(SETTINGS).then(applySettings, () => applySettings({}));
+    read();
     ext.storage.onChanged.addListener((changes, area) => {
-      if (area !== "local") return;
-      ext.storage.local.get(["disabledHosts", "debug", "banners"]).then(applySettings, () => {});
+      if (area === "local" && SETTINGS.some((k) => k in changes)) read();
     });
     ext.runtime.onMessage.addListener((msg, _sender, sendResponse) => {
       if (!msg || typeof msg.type !== "string" || !msg.type.startsWith("tacet:")) return;
+      // Both act on this page only, whatever the settings say for the site.
       if (msg.type === "tacet:zap") {
-        active = true;
+        setActive(true);
         scan(true);
       }
-      if (msg.type === "tacet:undo") {
-        undoAll();
-        active = false;
-      }
+      if (msg.type === "tacet:undo") setActive(false);
       sendResponse(status());
     });
   }

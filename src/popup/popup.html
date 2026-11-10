@@ -11,6 +11,16 @@
       <span id="host"></span>
     </header>
 
+    <fieldset class="modes">
+      <legend>Where Tacet runs</legend>
+      <div class="segments">
+        <label><input type="radio" name="mode" value="on" />All sites</label>
+        <label><input type="radio" name="mode" value="sites" />Chosen sites</label>
+        <label><input type="radio" name="mode" value="off" />Off</label>
+      </div>
+      <p id="hint"></p>
+    </fieldset>
+
     <label class="row"><input type="checkbox" id="site" /> Active on this site</label>
     <label class="row"
       ><input type="checkbox" id="banners" /> Also hide non-blocking cookie banners</label

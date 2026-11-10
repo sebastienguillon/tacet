@@ -39,11 +39,16 @@ Firefox removes temporarily loaded extensions when the browser restarts. `pnpm s
 
 Tacet works on its own as pages load. The toolbar popup can:
 
-- switch Tacet off for the current site;
+- choose where Tacet runs: **All sites** (the default), **Chosen sites** (only the sites you switch on), or **Off**;
+- switch Tacet on or off for the current site (**Active on this site**). In **All sites** this makes an exception, in **Chosen sites** it adds the site; the choice is kept when you change modes, and **Off** overrides it. A site is its host name without `www.`, so `www.example.com` and `example.com` are one site and `news.example.com` is another;
 - hide cookie banners that do not block the page, or leave them (on by default);
 - hide whatever is left on the page (**Zap now**) and restore the page (**Undo on this page**);
 - list what was hidden or repaired on the page and why;
 - turn on debug logging (`[Tacet]` lines in the page console).
+
+On a site where Tacet is off, the content script reads its settings and nothing else: it does not observe or change the page. **Zap now** still works there, on the current page only; **Undo on this page** stops it again.
+
+The settings are in `browser.storage.local`: `mode` (`"on"`, `"sites"` or `"off"`), `sites` (`{ host: true | false }`), `banners` and `debug`. `src/content/tacet.js` documents them next to `runsOn()`, which `src/popup/popup.js` repeats. Sites switched off before modes existed, in `disabledHosts`, are still honoured and move into `sites` the first time the popup opens.
 
 ## How detection works
 
@@ -108,7 +113,7 @@ The second command downloads the browsers Playwright drives for the tests and th
 pnpm test
 ```
 
-`tests/extension.test.mjs` injects the content script into each page of `tests/fixtures/`, in Chromium and in Firefox, and checks what it hides, unlocks and repairs, and what it must leave alone: walls at load and after a delay, user-opened lightboxes and login forms, cookie-settings links, app shells, `position: fixed` locks, content blurred by a CMP class, menus that blur the page on purpose, inert drawers and slides, loading states and dropdowns that disable `<body>`. Each page is a test and each check a subtest. The website's two demo pages (`docs/demo/`) run the same way, so the homepage never shows a wall Tacet cannot remove. Node runs them with its built-in test runner. `tests/manifest.test.mjs` checks the manifest's version and file references, and `tests/site.test.mjs` that the website runs the shipped content script.
+`tests/extension.test.mjs` injects the content script into each page of `tests/fixtures/`, in Chromium and in Firefox, and checks what it hides, unlocks and repairs, and what it must leave alone: walls at load and after a delay, user-opened lightboxes and login forms, cookie-settings links, app shells, `position: fixed` locks, content blurred by a CMP class, menus that blur the page on purpose, inert drawers and slides, loading states and dropdowns that disable `<body>`. Each page is a test and each check a subtest. The website's two demo pages (`docs/demo/`) run the same way, so the homepage never shows a wall Tacet cannot remove. Node runs them with its built-in test runner. `tests/settings.test.mjs` runs the content script with a stand-in for the extension storage, on a fixture served at a real host name, and checks where it runs in each mode, that it leaves a site it is off for untouched, and that the popup records the mode and the site's choice. `tests/manifest.test.mjs` checks the manifest's version and file references, and `tests/site.test.mjs` that the website runs the shipped content script.
 
 When a real site misbehaves, reproduce the pattern in a fixture before changing the detection, and make sure the new check fails without the change.
 
