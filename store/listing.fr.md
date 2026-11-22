@@ -1,6 +1,6 @@
 # Fiche des boutiques, français
 
-Le texte collé dans les tableaux de bord des boutiques. La description et les notes de version sont en texte brut, car le Chrome Web Store n’affiche aucune mise en forme. Elles ne citent aucun site ni aucune marque : le Chrome Web Store considère leurs listes comme du référencement abusif.
+Le texte collé dans les tableaux de bord des boutiques. Sur addons.mozilla.org, il remplit la version Français de la fiche. Le Chrome Web Store ne propose une fiche en français qu’une fois l’extension traduite (dossier `src/_locales/`) : d’ici là, sa fiche est en anglais seulement. La description et les notes de version sont en texte brut, car le Chrome Web Store n’affiche aucune mise en forme. Elles ne citent aucun site ni aucune marque : le Chrome Web Store considère leurs listes comme du référencement abusif.
 
 ## Nom
 
@@ -9,8 +9,6 @@ Tacet
 ## Résumé
 
 Masque les murs de consentement, les fenêtres de cookies et le blocage du défilement, sans cliquer sur Accepter ni Refuser.
-
-Les boutiques lisent le résumé dans le champ `description` de `src/manifest.json`. Tant que l’extension n’est pas traduite (dossier `src/_locales/`), elles affichent le résumé anglais dans toutes les langues ; ce résumé français sera celui de la traduction.
 
 ## Description
 
@@ -71,7 +69,10 @@ Ce champ n’accepte qu’une adresse pour toutes les langues ; la page anglaise
 
 ## addons.mozilla.org
 
-- Résumé et description : comme ci-dessus.
+Choisissez la langue de la fiche en haut de Edit Product Page : Français prend le texte de ce fichier, English (US) celui de `store/listing.en.md`.
+
+- Résumé : le résumé ci-dessus, seul.
+- Description : la description ci-dessus.
 - Page d’accueil : https://sebastienguillon.github.io/tacet/fr/
 - Site d’assistance : https://sebastienguillon.github.io/tacet/fr/aide.html
 - Licence : MIT.
@@ -80,7 +81,9 @@ Ce champ n’accepte qu’une adresse pour toutes les langues ; la page anglaise
 
 ## Notes de version
 
-### 2026.11.10
+Collées dans les notes de version (Release notes) de chaque nouvelle version sur addons.mozilla.org ; le Chrome Web Store n’a pas ce champ. La version 2026.10.20 n’est sortie que sur addons.mozilla.org ; 2026.11.22 est la première sur le Chrome Web Store.
+
+### 2026.11.22
 
 Choisissez où Tacet s’exécute, en haut de son menu : sur tous les sites, comme avant ; seulement sur les sites que vous activez, pour qu’il ne touche à aucun autre ; ou sur aucun. Zap now fonctionne toujours sur la page en cours, quel que soit le choix. Sur un site où Tacet est désactivé, il ne change plus rien pendant le chargement de la page.
 

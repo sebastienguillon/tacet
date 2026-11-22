@@ -1,6 +1,6 @@
 # Store listing, English
 
-The text pasted into the stores' dashboards. The name and the summary are the `name` and `description` in `src/manifest.json`, which both stores read from the package; `pnpm test` keeps the summary within the Chrome Web Store's 132 characters. The description and the release notes are plain text, as the Chrome Web Store shows no markup. They name no sites or brands: the Chrome Web Store treats lists of them as keyword spam.
+The text pasted into the stores' dashboards. The name and the summary are the `name` and `description` in `src/manifest.json`: the Chrome Web Store reads them from each upload, while addons.mozilla.org keeps the copy typed on its listing page; `pnpm test` keeps the summary within the Chrome Web Store's 132 characters. The description and the release notes are plain text, as the Chrome Web Store shows no markup. They name no sites or brands: the Chrome Web Store treats lists of them as keyword spam.
 
 ## Name
 
@@ -37,6 +37,23 @@ Upload, in this order, the 1280x800 images in `store/screenshots/` (`pnpm screen
 1. `en-1-wall-1280x800.jpg`: the page as a browser without Tacet shows it.
 2. `en-2-tacet-1280x800.jpg`: the same page with Tacet, and its menu listing what it did.
 
+## Chrome Web Store: Store listing
+
+The fields of the Store listing tab in the Chrome Developer Dashboard. Only the description, category, language, store icon and one screenshot are required.
+
+- Description: the description above.
+- Category: Privacy & Security, under Make Chrome Yours; addons.mozilla.org lists Tacet under Privacy & Security too.
+- Language: English. The listing has one language until the extension is translated (`src/_locales/`), as the Chrome Web Store translates a listing only into the extension's own languages.
+- Store icon: `src/icons/icon-128.png`.
+- Screenshots: the two English images, in the order given above.
+- Small promo tile, marquee promo tile and YouTube video: none; they are optional.
+- Official URL: none; it needs a site verified in Google Search Console.
+- Homepage URL: https://sebastienguillon.github.io/tacet/
+- Support URL: https://sebastienguillon.github.io/tacet/support.html
+- Mature content: off.
+
+In the Distribution tab: free of charge, public, in all regions.
+
 ## Chrome Web Store: Privacy practices
 
 These fields are entered separately in the Chrome Developer Dashboard, under Privacy practices. They are not supplied by the extension ZIP or the public description. Paste each paragraph into its matching field, then click Save Draft before submitting for review. See [Chrome's privacy fields guide](https://developer.chrome.com/docs/webstore/cws-dashboard-privacy).
@@ -67,7 +84,10 @@ https://sebastienguillon.github.io/tacet/privacy.html
 
 ## addons.mozilla.org
 
-- Summary and description: as above.
+Choose the listing's language at the top of Edit Product Page: English (US) takes the text of this file, Français the text of `store/listing.fr.md`.
+
+- Summary: the summary above, on its own.
+- Description: the description above.
 - Homepage: https://sebastienguillon.github.io/tacet/
 - Support site: https://sebastienguillon.github.io/tacet/support.html
 - License: MIT License.
@@ -76,7 +96,9 @@ https://sebastienguillon.github.io/tacet/privacy.html
 
 ## Release notes
 
-### 2026.11.10
+Pasted into the Release notes of each new version on addons.mozilla.org; the Chrome Web Store has no such field. 2026.10.20 was released on addons.mozilla.org only; 2026.11.22 is the first release on the Chrome Web Store.
+
+### 2026.11.22
 
 Choose where Tacet runs, from the top of its menu: on all sites, as before; only on the sites you switch on, so it leaves every other site untouched; or on none. Zap now still works on the current page in every mode. On a site where Tacet is off, it no longer changes anything while the page loads.
 

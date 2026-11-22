@@ -1,6 +1,6 @@
 {
   "name": "tacet",
-  "version": "2026.11.10",
+  "version": "2026.11.22",
   "private": true,
   "description": "A Manifest V3 browser extension that removes consent walls and other blocking popups, their overlays, and the scroll locks they leave behind.",
   "license": "MIT",
