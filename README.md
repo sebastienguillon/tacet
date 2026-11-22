@@ -6,7 +6,7 @@ It never clicks anything and records no choice: a hidden consent dialog stays un
 
 ## Install
 
-Tacet is not published in the stores yet. The sections below load it from this repository as a development build, in Chrome or in Firefox.
+Firefox: install Tacet from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tacet/). Chrome: Tacet is not on the Chrome Web Store yet. The sections below load it from this repository as a development build, in Chrome or in Firefox.
 
 Its public website is <https://sebastienguillon.github.io/tacet/>, in English and French (see [Public website](#public-website)).
 
@@ -184,7 +184,7 @@ The store listing is not part of the extension: its text, the Chrome Web Store's
 1. Set the release's date as `version` in `src/manifest.json` and `package.json`, and add its notes to both listing files.
 2. Run `pnpm package`, which checks everything and writes `web-ext-artifacts/tacet-<version>.zip`. The same ZIP goes to both stores.
 3. Chrome Web Store: in the [Chrome Developer Dashboard](https://chrome.google.com/webstore/devconsole/), upload the ZIP, paste the description, upload the screenshots from `store/screenshots/` (`pnpm screenshots` recreates them), and fill in **Privacy practices** from the listing. Save the draft, then submit for review.
-4. addons.mozilla.org: upload the same ZIP at the [Developer Hub](https://addons.mozilla.org/developers/) and paste the description and the release notes. No source archive is needed, as the code is not bundled or minified.
+4. addons.mozilla.org: upload the same ZIP as a new version at the [Developer Hub](https://addons.mozilla.org/developers/) and paste its release notes. When the listing's text changed, update it under Edit Product Page, in English (US) from `store/listing.en.md` and in Français from `store/listing.fr.md`. No source archive is needed, as the code is not bundled or minified.
 5. Once a store publishes Tacet, point the website's install buttons at it (see [Public website](#public-website)).
 
 ## Public website
@@ -193,7 +193,7 @@ The homepage, privacy policy and support page are static files in `docs/`, with 
 
 - The homepage demo runs the extension's own content script on a made-up newspaper (`docs/demo/en.html`, `docs/demo/fr.html`). After changing `src/content/`, run `pnpm site`; `pnpm test` fails until the copies match.
 - The tested-pages table on the homepage holds the results of the 20 October 2026 probe run on `scripts/sites/articles.txt` and `homepages.txt`. Update both languages together when re-running it.
-- The install buttons explain how to load Tacet from source until the stores approve it. When a store listing goes live, point its button at the listing and change its status line, in `docs/index.html` and `docs/fr/index.html`.
+- The Firefox button points at Tacet on addons.mozilla.org. The Chrome button explains how to load Tacet from source until the Chrome Web Store approves it. When that listing goes live, point its button at the listing and change its status line, in `docs/index.html` and `docs/fr/index.html`.
 - Update `docs/privacy.html` and `docs/fr/confidentialite.html` whenever what the extension reads, keeps or sends changes.
 
 ## Limits
