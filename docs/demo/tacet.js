@@ -1053,8 +1053,10 @@
   }
 
   // Settings in extension storage (src/popup/popup.js writes them):
-  //   mode: "on" (default) runs on every site, "sites" only on the sites switched
-  //         on, "off" on none;
+  //   mode: "sites" runs only on the sites switched on, "on" on every site, "off"
+  //         on none. src/background.js stores "sites" when Tacet is installed;
+  //         no mode stored means "on", the default before, so the installs from
+  //         before keep running where they ran;
   //   sites: { host: true | false }, the user's choice for each site, which wins
   //         over the mode's default in "on" and "sites";
   //   disabledHosts: { host: true }, the sites switched off before modes existed.

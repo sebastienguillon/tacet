@@ -27,11 +27,23 @@ describe("manifest", () => {
     assert.equal(summary, manifest.description);
   });
 
+  // Chrome reads service_worker and Firefox reads scripts, each ignoring the
+  // other; Chrome before 121 refuses a Manifest V3 extension with scripts.
+  test("gives Chrome 121+ and Firefox the same background script", () => {
+    assert.ok(Number(manifest.minimum_chrome_version) >= 121);
+    const { service_worker, scripts, ...rest } = manifest.background;
+    assert.equal(typeof service_worker, "string");
+    assert.deepEqual(scripts, [service_worker]);
+    assert.deepEqual(rest, {});
+  });
+
   test("references only files that exist", async () => {
     const files = [
       ...Object.values(manifest.icons),
       ...Object.values(manifest.action.default_icon),
       manifest.action.default_popup,
+      manifest.background.service_worker,
+      ...manifest.background.scripts,
       ...manifest.content_scripts.flatMap((c) => [...(c.js ?? []), ...(c.css ?? [])]),
     ];
     for (const file of files) await access(join(root, "src", file));

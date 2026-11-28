@@ -9,7 +9,12 @@
     "48": "icons/icon-48.png",
     "128": "icons/icon-128.png"
   },
+  "minimum_chrome_version": "121",
   "permissions": ["storage"],
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["background.js"]
+  },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],

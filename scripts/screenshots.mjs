@@ -18,6 +18,7 @@ const EXT = join(root, "src");
 const OUT = join(root, "store/screenshots");
 const lang = process.argv[2] === "fr" ? "fr" : "en";
 const PAGE = `https://sebastienguillon.github.io/tacet/demo/${lang}.html`;
+const HOST = new URL(PAGE).hostname.replace(/^www\./, "");
 const VIEWPORT = { width: 1280, height: 800 };
 const CHROME_UA =
   "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36";
@@ -50,6 +51,9 @@ const id = await ext.evaluate(
   async () => (await chrome.management.getAll()).find((e) => e.name === "Tacet")?.id,
 );
 if (!id) throw new Error("Tacet extension did not load");
+// A new install runs on chosen sites: choose the demo's, as a reader would.
+const worker = ctx.serviceWorkers()[0] ?? (await ctx.waitForEvent("serviceworker"));
+await worker.evaluate((host) => chrome.storage.local.set({ sites: { [host]: true } }), HOST);
 const page = await ctx.newPage();
 await page.goto(PAGE, { waitUntil: "load" });
 await page.waitForTimeout(2000);
@@ -72,12 +76,13 @@ await ctx.close();
 await rm(profile, { recursive: true, force: true });
 if (!status?.actions?.length) throw new Error("Tacet did nothing on the demo page");
 
-// 3. The popup, rendered by its own code with that status.
+// 3. The popup, rendered by its own code with that status and those settings.
 const popup = await plain.newPage({ viewport: { width: 340, height: 200 } });
 await popup.addInitScript((st) => {
+  const settings = { mode: "sites", sites: { [st.host]: true } };
   globalThis.browser = {
     tabs: { query: async () => [{ id: 1 }], sendMessage: async () => st },
-    storage: { local: { get: async () => ({}), set: async () => {} } },
+    storage: { local: { get: async () => structuredClone(settings), set: async () => {} } },
   };
 }, status);
 await popup.goto(pathToFileURL(join(EXT, "popup/popup.html")).href);
