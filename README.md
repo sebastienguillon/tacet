@@ -187,7 +187,7 @@ The store listing is not part of the extension: its text, the Chrome Web Store's
 1. Set the release's date as `version` in `src/manifest.json` and `package.json`, and add its notes to both listing files.
 2. Run `pnpm package`, which checks everything and writes `web-ext-artifacts/tacet-<version>.zip`. The same ZIP goes to both stores.
 3. Chrome Web Store: in the [Chrome Developer Dashboard](https://chrome.google.com/webstore/devconsole/), upload the ZIP, paste the description, upload the screenshots from `store/screenshots/` (`pnpm screenshots` recreates them), and fill in **Privacy practices** from the listing. Save the draft, then submit for review.
-4. addons.mozilla.org: upload the same ZIP as a new version at the [Developer Hub](https://addons.mozilla.org/developers/) and paste its release notes. When the listing's text changed, update it under Edit Product Page, in English (US) from `store/listing.en.md` and in Français from `store/listing.fr.md`. No source archive is needed, as the code is not bundled or minified.
+4. addons.mozilla.org: upload the same ZIP as a new version at the [Developer Hub](https://addons.mozilla.org/developers/) and paste its release notes. When the listing's text or screenshots changed, update them under Edit Product Page, in English (US) from `store/listing.en.md` and in Français from `store/listing.fr.md`. No source archive is needed, as the code is not bundled or minified.
 5. Once a store publishes Tacet, point the website's install buttons at it (see [Public website](#public-website)).
 
 ## Public website
@@ -208,4 +208,4 @@ The homepage, privacy policy and support page are static files in `docs/`, with 
 
 ## License
 
-Tacet is released under the [MIT License](LICENSE).
+Tacet is released under the [MIT License](LICENSE), except the popup's count figures, `src/popup/fonts/tacet-figures.woff2`: a subset of the Bravura music font, released under the [SIL Open Font License 1.1](src/popup/fonts/OFL.txt).

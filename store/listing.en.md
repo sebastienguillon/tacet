@@ -98,6 +98,10 @@ Choose the listing's language at the top of Edit Product Page: English (US) take
 
 Pasted into the Release notes of each new version on addons.mozilla.org; the Chrome Web Store has no such field. 2026.10.20 was released on addons.mozilla.org only; 2026.11.22 is the first release on the Chrome Web Store.
 
+### 2026.11.28
+
+A new look for Tacet's menu: dark, with switches on the right and, beside the site's name, the number of changes Tacet made on the page. Each state now says plainly what Tacet did, or why it did nothing. On Android, the menu fills the screen and its controls are larger. New installs start on Chosen sites, now first in the list, so Tacet runs only on the sites you switch on. If Tacet is already installed, it keeps running on the same sites as before.
+
 ### 2026.11.22
 
 Choose where Tacet runs, from the top of its menu: on all sites, as before; only on the sites you switch on, so it leaves every other site untouched; or on none. Zap now still works on the current page in every mode. On a site where Tacet is off, it no longer changes anything while the page loads.

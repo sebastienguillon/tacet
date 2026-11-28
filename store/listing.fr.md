@@ -83,6 +83,10 @@ Choisissez la langue de la fiche en haut de Edit Product Page : Français prend 
 
 Collées dans les notes de version (Release notes) de chaque nouvelle version sur addons.mozilla.org ; le Chrome Web Store n’a pas ce champ. La version 2026.10.20 n’est sortie que sur addons.mozilla.org ; 2026.11.22 est la première sur le Chrome Web Store.
 
+### 2026.11.28
+
+Nouvelle apparence pour le menu de Tacet : sombre, avec des interrupteurs à droite et, à côté du nom du site, le nombre de changements que Tacet a apportés à la page. Chaque état dit maintenant clairement ce que Tacet a fait, ou pourquoi il n’a rien fait. Sur Android, le menu occupe tout l’écran et ses commandes sont plus grandes. Lors d’une nouvelle installation, Tacet est réglé sur Chosen sites, désormais en tête de liste : il ne s’exécute alors que sur les sites que vous activez. Si Tacet est déjà installé, il continue de s’exécuter sur les mêmes sites qu’avant.
+
 ### 2026.11.22
 
 Choisissez où Tacet s’exécute, en haut de son menu : sur tous les sites, comme avant ; seulement sur les sites que vous activez, pour qu’il ne touche à aucun autre ; ou sur aucun. Zap now fonctionne toujours sur la page en cours, quel que soit le choix. Sur un site où Tacet est désactivé, il ne change plus rien pendant le chargement de la page.
