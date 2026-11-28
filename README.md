@@ -6,7 +6,7 @@ It never clicks anything and records no choice: a hidden consent dialog stays un
 
 ## Install
 
-Firefox: install Tacet from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tacet/). Chrome: Tacet is not on the Chrome Web Store yet. The sections below load it from this repository as a development build, in Chrome or in Firefox.
+Install Tacet from [Firefox Add-ons](https://addons.mozilla.org/firefox/addon/tacet/) or the [Chrome Web Store](https://chromewebstore.google.com/detail/tacet/ikielbgnjomahlddgiilpipooobclafb). The sections below load it from this repository instead, as a development build, in Chrome or in Firefox.
 
 Its public website is <https://sebastienguillon.github.io/tacet/>, in English and French (see [Public website](#public-website)).
 
@@ -196,7 +196,7 @@ The homepage, privacy policy and support page are static files in `docs/`, with 
 
 - The homepage demo runs the extension's own content script on a made-up newspaper (`docs/demo/en.html`, `docs/demo/fr.html`). After changing `src/content/`, run `pnpm site`; `pnpm test` fails until the copies match.
 - The tested-pages table on the homepage holds the results of the 20 October 2026 probe run on `scripts/sites/articles.txt` and `homepages.txt`. Update both languages together when re-running it.
-- The Firefox button points at Tacet on addons.mozilla.org. The Chrome button explains how to load Tacet from source until the Chrome Web Store approves it. When that listing goes live, point its button at the listing and change its status line, in `docs/index.html` and `docs/fr/index.html`.
+- The install buttons point at Tacet on addons.mozilla.org and the Chrome Web Store, in `docs/index.html` and `docs/fr/index.html`.
 - Update `docs/privacy.html` and `docs/fr/confidentialite.html` whenever what the extension reads, keeps or sends changes.
 
 ## Limits

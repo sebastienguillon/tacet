@@ -54,7 +54,7 @@ Terminology: wall, overlay, popup, banner, corner box, scroll lock, signature (a
 Open decisions:
 
 - The popup is English only; the French interface is decided but not built. Until it is, the stores show the English summary in every language.
-- Tacet is not yet submitted to the Chrome Web Store or addons.mozilla.org; the listing text is in `store/`.
+- Tacet is published on the Chrome Web Store and addons.mozilla.org; the listing text is in `store/`.
 
 ## Brand Commitments
 
