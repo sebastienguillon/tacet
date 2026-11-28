@@ -1,4 +1,4 @@
-// Where Tacet runs: the mode (every site, chosen sites, off), the choice for each
+// Where Tacet runs: the mode (chosen sites, every site, off), the choice for each
 // site, and the popup that sets them. The content script runs with a stand-in for
 // the extension storage and messaging, in Chromium and Firefox, on a fixture
 // served at https://news.example/ so the site has a host name.
@@ -89,7 +89,7 @@ for (const [engine, type] of [
     }
 
     for (const [label, stored, expected, url] of [
-      ["no settings: runs, as before modes", {}, ACTIVE],
+      ["no settings, as in the installs from before: runs, as before modes", {}, ACTIVE],
       ["all sites: runs", { mode: "on" }, ACTIVE],
       [
         "all sites, this site switched off: leaves the page alone",
@@ -222,8 +222,10 @@ for (const [engine, type] of [
 
       test("modes and the site switch", async (t) => {
         const p = await popup({});
-        await t.test("a fresh install runs on all sites, this one included", async () =>
-          assert.deepEqual(await view(p), { mode: "on", site: true, siteEnabled: true }),
+        await t.test(
+          "no mode stored, as in the installs from before: all sites, this one included",
+          async () =>
+            assert.deepEqual(await view(p), { mode: "on", site: true, siteEnabled: true }),
         );
 
         await choose(p, "sites");
@@ -249,6 +251,24 @@ for (const [engine, type] of [
         await t.test("all sites: switching the site off records the choice", async () =>
           assert.deepEqual(await stored(p), { mode: "on", sites: { [HOST]: false } }),
         );
+        await p.close();
+      });
+
+      // src/background.js stores Chosen sites when Tacet is installed.
+      test("a new install: chosen sites, listed first, this site off until switched on", async () => {
+        const p = await popup({ mode: "sites" });
+        assert.deepEqual(
+          await p.$$eval(".segments label", (els) =>
+            els.map((el) => [el.querySelector("input").value, el.textContent.trim()]),
+          ),
+          [
+            ["sites", "Chosen sites"],
+            ["on", "All sites"],
+            ["off", "Off"],
+          ],
+        );
+        assert.deepEqual(await view(p), { mode: "sites", site: false, siteEnabled: true });
+        assert.equal(await p.textContent("#hint"), "Runs only on the sites you switch on below.");
         await p.close();
       });
 

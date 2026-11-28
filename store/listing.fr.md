@@ -20,7 +20,7 @@ Comment il les trouve. Tacet reconnaît les outils de consentement les plus rép
 
 Ce qu’il laisse en place. Ce que vous ouvrez vous-même : un formulaire de connexion, un menu, une visionneuse de photos. Quand vous cliquez sur le lien de réglage des cookies d’un site, sa propre fenêtre revient pour que vous y répondiez comme vous l’entendez. Les vérifications anti-robots, comme les CAPTCHA, restent en place.
 
-Vous gardez la main. Le menu de Tacet liste ce qu’il a masqué sur la page et pourquoi. De là, vous pouvez masquer ce qui reste avec Zap now, rétablir la page avec Undo on this page, désactiver Tacet pour un site, ou laisser en place les bandeaux de cookies qui ne bloquent pas la page. Vous choisissez aussi où il s’exécute : sur tous les sites, seulement sur ceux que vous activez, ou sur aucun.
+Vous gardez la main. Le menu de Tacet liste ce qu’il a masqué sur la page et pourquoi. De là, vous pouvez masquer ce qui reste avec Zap now, rétablir la page avec Undo on this page, activer ou désactiver Tacet pour un site, ou laisser en place les bandeaux de cookies qui ne bloquent pas la page. Vous choisissez aussi où il s’exécute : seulement sur les sites que vous activez, sur tous les sites, ou sur aucun. Une fois installé, il ne s’exécute que sur les sites que vous activez, et laisse les autres intacts jusqu’à ce que vous choisissiez tous les sites.
 
 Tacet retire les murs de consentement ; il ne contourne pas les murs payants : les articles réservés aux abonnés le restent.
 
@@ -47,7 +47,7 @@ Tacet a un seul objectif : retirer les murs de consentement et les autres fenêt
 
 ### Justification de storage
 
-Tacet utilise le stockage pour retenir, sur l’appareil de l’utilisateur, là où il s’exécute (tous les sites, les sites choisis ou aucun), les sites où celui-ci l’a activé ou désactivé, le fait qu’il masque ou non les bandeaux de cookies qui ne bloquent pas la page, et l’activation ou non de son journal de débogage. Rien de ce qui est stocké n’est envoyé nulle part ; Tacet ne fait aucune requête réseau.
+Tacet utilise le stockage pour retenir, sur l’appareil de l’utilisateur, là où il s’exécute (les sites choisis, tous les sites ou aucun), les sites où celui-ci l’a activé ou désactivé, le fait qu’il masque ou non les bandeaux de cookies qui ne bloquent pas la page, et l’activation ou non de son journal de débogage. Rien de ce qui est stocké n’est envoyé nulle part ; Tacet ne fait aucune requête réseau.
 
 ### Justification de l’accès aux sites
 
@@ -55,7 +55,7 @@ Le script de contenu de Tacet s’exécute sur toutes les pages http et https, c
 
 ### Code distant
 
-Sélectionnez « No, I am not using remote code ». Tout le code de Tacet est dans le paquet de l’extension : un script de contenu, une feuille de style et la fenêtre de l’extension. Il ne charge rien depuis le réseau et n’exécute aucun code des pages qu’il visite.
+Sélectionnez « No, I am not using remote code ». Tout le code de Tacet est dans le paquet de l’extension : un script de contenu, une feuille de style, la fenêtre de l’extension et un script d’arrière-plan, qui ne fait qu’enregistrer, quand Tacet est installé, qu’il s’exécute sur les sites que l’utilisateur active. Il ne charge rien depuis le réseau et n’exécute aucun code des pages qu’il visite.
 
 ### Utilisation des données
 

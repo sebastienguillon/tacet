@@ -26,8 +26,8 @@ Tacet never answers consent. It hides the wall without clicking Accept or Refuse
 
 ## Operating Context
 
-- A content script runs at `document_start` in the top frame of every http/https page. On a site where Tacet is off, it reads its settings and leaves the page untouched. There is no background script, the only permission is `storage`, and the extension makes no network requests.
-- The toolbar popup is the only interface. It chooses where Tacet runs (**All sites**, the default; **Chosen sites**, only the sites switched on; **Off**), switches Tacet on or off for the current site, toggles the hiding of non-blocking cookie banners (on by default), turns on a debug log in the page console, hides whatever is left (**Zap now**), restores the page (**Undo on this page**), and lists every element hidden or repaired, with the reason.
+- A content script runs at `document_start` in the top frame of every http/https page. On a site where Tacet is off, it reads its settings and leaves the page untouched. A background script only stores Chosen sites when Tacet is installed; the only permission is `storage`, and the extension makes no network requests.
+- The toolbar popup is the only interface. It chooses where Tacet runs (**Chosen sites**, only the sites switched on, the default for new installs; **All sites**, kept by earlier installs that never chose a mode; **Off**), switches Tacet on or off for the current site, toggles the hiding of non-blocking cookie banners (on by default), turns on a debug log in the page console, hides whatever is left (**Zap now**), restores the page (**Undo on this page**), and lists every element hidden or repaired, with the reason.
 - Settings live in the browser's extension storage: the mode, the choice for each site, the banner toggle, debug.
 - Distribution: the Chrome Web Store and addons.mozilla.org, with a public GitHub Pages site (homepage, privacy policy, support) at https://sebastienguillon.github.io/tacet/, as for the sibling extension `sg-x`. The store listing text is in `store/`.
 - Development: `pnpm check` (lint, format, behaviour tests in Chromium and Firefox, Mozilla's linter) and `pnpm probe` on real sites; see README.md.
@@ -44,12 +44,12 @@ Capabilities:
 
 Constraints:
 
-- Manifest V3, one manifest for Chrome and for Firefox 140+ (Firefox for Android 142+); plain JavaScript loaded from `src/` with no build step.
+- Manifest V3, one manifest for Chrome 121+ and for Firefox 140+ (Firefox for Android 142+); plain JavaScript loaded from `src/` with no build step.
 - Collects no data (`data_collection_permissions: none`), never clicks, never records a consent choice.
 - Does not try to get around subscription paywalls.
 - Does not restore content a wall script removed or truncated; processes the top frame only; does not undo locks made with `wheel`/`touchmove` listeners.
 
-Terminology: wall, overlay, popup, banner, corner box, scroll lock, signature (a known vendor's container), CMP (consent management platform), Zap now, Undo, the modes All sites, Chosen sites and Off.
+Terminology: wall, overlay, popup, banner, corner box, scroll lock, signature (a known vendor's container), CMP (consent management platform), Zap now, Undo, the modes Chosen sites, All sites and Off.
 
 Open decisions:
 

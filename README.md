@@ -12,7 +12,7 @@ Its public website is <https://sebastienguillon.github.io/tacet/>, in English an
 
 ## Requirements
 
-- Google Chrome, or Firefox 140 or later
+- Google Chrome 121 or later, or Firefox 140 or later
 - A local copy of this repository
 - Node.js 24 or later and pnpm 12 or later, for the tests and tools only
 
@@ -33,14 +33,14 @@ After changing the source, click the **Reload** button on the Tacet card in `chr
 3. Click **Load Temporary Add-on…**.
 4. Select `src/manifest.json` in this repository.
 
-Firefox removes temporarily loaded extensions when the browser restarts. `pnpm start:firefox` starts a separate Firefox profile with Tacet loaded and reloads it when the source changes; `pnpm start:chrome` does the same in Chromium.
+Firefox removes temporarily loaded extensions when the browser restarts. `pnpm start:firefox` starts a separate Firefox profile with Tacet loaded and reloads it when the source changes; `pnpm start:chrome` does the same in Chromium. Each run is a new install, so Tacet starts in **Chosen sites**: switch it on for the page's site, or choose **All sites**.
 
 ## Using it
 
-Tacet works on its own as pages load. The toolbar popup can:
+Tacet works on its own as pages load, on the sites where it runs. A new install starts in **Chosen sites**: Tacet leaves every site alone until you switch it on for that site (**Active on this site**) or choose **All sites**. The toolbar popup can:
 
-- choose where Tacet runs: **All sites** (the default), **Chosen sites** (only the sites you switch on), or **Off**;
-- switch Tacet on or off for the current site (**Active on this site**). In **All sites** this makes an exception, in **Chosen sites** it adds the site; the choice is kept when you change modes, and **Off** overrides it. A site is its host name without `www.`, so `www.example.com` and `example.com` are one site and `news.example.com` is another;
+- choose where Tacet runs: **Chosen sites** (the default: only the sites you switch on), **All sites**, or **Off**;
+- switch Tacet on or off for the current site (**Active on this site**). In **Chosen sites** this adds the site, in **All sites** it makes an exception; the choice is kept when you change modes, and **Off** overrides it. A site is its host name without `www.`, so `www.example.com` and `example.com` are one site and `news.example.com` is another;
 - hide cookie banners that do not block the page, or leave them (on by default);
 - hide whatever is left on the page (**Zap now**) and restore the page (**Undo on this page**);
 - list what was hidden or repaired on the page and why;
@@ -48,7 +48,7 @@ Tacet works on its own as pages load. The toolbar popup can:
 
 On a site where Tacet is off, the content script reads its settings and nothing else: it does not observe or change the page. **Zap now** still works there, on the current page only; **Undo on this page** stops it again.
 
-The settings are in `browser.storage.local`: `mode` (`"on"`, `"sites"` or `"off"`), `sites` (`{ host: true | false }`), `banners` and `debug`. `src/content/tacet.js` documents them next to `runsOn()`, which `src/popup/popup.js` repeats. Sites switched off before modes existed, in `disabledHosts`, are still honoured and move into `sites` the first time the popup opens.
+The settings are in `browser.storage.local`: `mode` (`"sites"`, `"on"` or `"off"`), `sites` (`{ host: true | false }`), `banners` and `debug`. `src/content/tacet.js` documents them next to `runsOn()`, which `src/popup/popup.js` repeats. `src/background.js` stores `"sites"` when Tacet is installed, and does nothing else. No `mode` stored counts as `"on"`, the default before, so an earlier install that never chose a mode keeps running on all sites without needing any event at update. Sites switched off before modes existed, in `disabledHosts`, are still honoured and move into `sites` the first time the popup opens.
 
 ## How detection works
 
@@ -84,6 +84,7 @@ Clicking a "cookie settings" control, such as "Modifier mes choix cookies", rele
 | Path                      | Purpose                                                                            |
 | ------------------------- | ---------------------------------------------------------------------------------- |
 | `src/`                    | The extension, loaded as is: manifest, content script and styles, popup, icons     |
+| `src/background.js`       | Stores Chosen sites when Tacet is installed, and does nothing else                 |
 | `tests/`                  | Behaviour tests in Chromium and Firefox, and manifest checks                       |
 | `tests/fixtures/`         | Local pages reproducing walls, locks and the patterns that must be left alone      |
 | `scripts/probe.mjs`       | Loads real sites with and without Tacet and reports the difference                 |
@@ -91,6 +92,7 @@ Clicking a "cookie settings" control, such as "Modifier mes choix cookies", rele
 | `scripts/icons.mjs`       | Exports `assets/icon.svg` to the PNG sizes in `src/icons/` and `docs/icon.png`     |
 | `scripts/site.mjs`        | Copies the content script into `docs/demo/` for the website's demo                 |
 | `scripts/screenshots.mjs` | Takes the store screenshots from the website's demo page                           |
+| `scripts/lint-ext.mjs`    | Runs Mozilla's add-on linter on `src/`, allowing only the `service_worker` warning |
 | `store/`                  | The store listing's text and release notes, one file per language, and screenshots |
 | `assets/`                 | The icon's SVG source                                                              |
 | `docs/`                   | The public website, published by GitHub Pages; French pages in `docs/fr/`          |
@@ -113,7 +115,7 @@ The second command downloads the browsers Playwright drives for the tests and th
 pnpm test
 ```
 
-`tests/extension.test.mjs` injects the content script into each page of `tests/fixtures/`, in Chromium and in Firefox, and checks what it hides, unlocks and repairs, and what it must leave alone: walls at load and after a delay, user-opened lightboxes and login forms, cookie-settings links, app shells, `position: fixed` locks, content blurred by a CMP class, menus that blur the page on purpose, inert drawers and slides, loading states and dropdowns that disable `<body>`. Each page is a test and each check a subtest. The website's two demo pages (`docs/demo/`) run the same way, so the homepage never shows a wall Tacet cannot remove. Node runs them with its built-in test runner. `tests/settings.test.mjs` runs the content script with a stand-in for the extension storage, on a fixture served at a real host name, and checks where it runs in each mode, that it leaves a site it is off for untouched, and that the popup records the mode and the site's choice. `tests/manifest.test.mjs` checks the manifest's version and file references, and `tests/site.test.mjs` that the website runs the shipped content script.
+`tests/extension.test.mjs` injects the content script into each page of `tests/fixtures/`, in Chromium and in Firefox, and checks what it hides, unlocks and repairs, and what it must leave alone: walls at load and after a delay, user-opened lightboxes and login forms, cookie-settings links, app shells, `position: fixed` locks, content blurred by a CMP class, menus that blur the page on purpose, inert drawers and slides, loading states and dropdowns that disable `<body>`. Each page is a test and each check a subtest. The website's two demo pages (`docs/demo/`) run the same way, so the homepage never shows a wall Tacet cannot remove. Node runs them with its built-in test runner. `tests/settings.test.mjs` runs the content script with a stand-in for the extension storage, on a fixture served at a real host name, and checks where it runs in each mode and with no settings, that it leaves a site it is off for untouched, and that the popup lists **Chosen sites** first and records the mode and the site's choice. `tests/install.test.mjs` runs `src/background.js` in Node with a stand-in for the extension API and checks that it stores Chosen sites on install and nothing on update, then installs the unpacked extension in Chromium and checks that a new install stores Chosen sites, leaves a page alone, and runs on it once its site is switched on; Playwright cannot install an extension in Firefox. `tests/manifest.test.mjs` checks the manifest's version, its file references and that Chrome 121 or later and Firefox get the same background script, and `tests/site.test.mjs` that the website runs the shipped content script.
 
 When a real site misbehaves, reproduce the pattern in a fixture before changing the detection, and make sure the new check fails without the change.
 
@@ -150,7 +152,7 @@ Run commands from the repository root:
 | `pnpm test`          | Run the tests in `tests/` with Node's built-in test runner        |
 | `pnpm lint`          | Check the source, tests and tools with Oxlint                     |
 | `pnpm lint:fix`      | Apply Oxlint's safe automatic fixes                               |
-| `pnpm lint:ext`      | Validate `src/` with Mozilla's add-on linter, every warning fatal |
+| `pnpm lint:ext`      | Run Mozilla's add-on linter on `src/`, all warnings but one fatal |
 | `pnpm format`        | Format supported project files with Oxfmt                         |
 | `pnpm format:check`  | Verify formatting without changing files                          |
 | `pnpm check`         | Lint, verify formatting, test, and validate the extension         |

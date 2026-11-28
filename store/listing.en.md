@@ -20,7 +20,7 @@ How it finds them. Tacet recognises the most common consent tools and hides thei
 
 What it leaves alone. What you open yourself: a login form, a menu, a photo viewer. When you click a site's cookie settings link, its own dialog comes back for you to answer as you choose. Anti-bot checks such as CAPTCHAs are left in place.
 
-You stay in control. Tacet's menu lists what it hid on the page and why. From there you can hide what is left with Zap now, restore the page with Undo on this page, switch Tacet off for a site, or leave in place the cookie banners that do not block the page. You also choose where it runs: on all sites, only on the sites you switch on, or on none.
+You stay in control. Tacet's menu lists what it hid on the page and why. From there you can hide what is left with Zap now, restore the page with Undo on this page, switch Tacet on or off for a site, or leave in place the cookie banners that do not block the page. You also choose where it runs: only on the sites you switch on, on all sites, or on none. Once installed, it runs only on the sites you switch on, and leaves every other site alone until you choose all sites.
 
 Tacet clears consent walls; it does not get around paywalls, so articles reserved for subscribers stay reserved.
 
@@ -64,7 +64,7 @@ Tacet has one purpose: removing the consent walls and other blocking popups that
 
 ### storage justification
 
-Tacet uses storage to remember, on the user's device, where it runs (all sites, chosen sites or none), the sites the user switched it on or off for, whether it hides cookie banners that do not block the page, and whether its debug log is on. Nothing stored is sent anywhere; Tacet makes no network requests.
+Tacet uses storage to remember, on the user's device, where it runs (chosen sites, all sites or none), the sites the user switched it on or off for, whether it hides cookie banners that do not block the page, and whether its debug log is on. Nothing stored is sent anywhere; Tacet makes no network requests.
 
 ### Host permission justification
 
@@ -72,7 +72,7 @@ Tacet's content script runs on every http and https page because consent walls a
 
 ### Remote code
 
-Select “No, I am not using remote code.” All of Tacet's code is in the extension package: one content script, one stylesheet and the popup. It loads nothing from the network and runs no code from the pages it visits.
+Select “No, I am not using remote code.” All of Tacet's code is in the extension package: one content script, one stylesheet, the popup and one background script, which only stores, when Tacet is installed, that it runs on the sites the user switches on. It loads nothing from the network and runs no code from the pages it visits.
 
 ### Data usage
 

@@ -3,8 +3,8 @@ const $ = (id) => document.getElementById(id);
 
 // The settings are described in src/content/tacet.js, next to its runsOn().
 const HINTS = {
-  on: "Runs on every site, except those you switch off below.",
   sites: "Runs only on the sites you switch on below.",
+  on: "Runs on every site, except those you switch off below.",
   off: "Off everywhere. Zap now still works on this page.",
 };
 
@@ -29,7 +29,9 @@ async function send(type) {
   }
 }
 
-// The sites switched off before modes existed become choices in `sites`.
+// The sites switched off before modes existed become choices in `sites`. No
+// mode stored means All sites, as for the installs from before; a new install
+// stores Chosen sites (src/background.js).
 async function readSettings() {
   const s = await api.storage.local.get(["mode", "sites", "disabledHosts", "debug", "banners"]);
   const sites = s.sites ?? {};

@@ -165,11 +165,16 @@ async function openContext(withExt) {
     args: withExt ? [`--disable-extensions-except=${EXT}`, `--load-extension=${EXT}`] : [],
   });
   if (withExt) {
-    // Debug mode makes the content script mirror its status into the DOM.
+    // Debug mode makes the content script mirror its status into the DOM. A new
+    // install runs on chosen sites: once it has stored that, run on all sites.
     const id = await extensionId(ctx);
     const p = await ctx.newPage();
     await p.goto(`chrome-extension://${id}/popup/popup.html`);
-    await p.evaluate(() => chrome.storage.local.set({ debug: true }));
+    await p.evaluate(async () => {
+      for (let i = 0; i < 50 && (await chrome.storage.local.get("mode")).mode === undefined; i++)
+        await new Promise((done) => setTimeout(done, 100));
+      await chrome.storage.local.set({ debug: true, mode: "on" });
+    });
     await p.close();
   }
   return {
