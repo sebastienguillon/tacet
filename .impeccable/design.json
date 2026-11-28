@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-20T21:01:44Z",
+  "generatedAt": "2026-11-28T11:52:08Z",
   "title": "Design System: Tacet",
   "extensions": {
     "colorMeta": {
@@ -183,6 +183,126 @@
           "#bada33",
           "#dfff74"
         ]
+      },
+      "popup-folder": {
+        "role": "neutral",
+        "displayName": "Folder Black (popup)",
+        "canonical": "#141513",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#414241",
+          "#60625f",
+          "#818380",
+          "#a4a5a4",
+          "#c9c9c8",
+          "#eeeeee"
+        ]
+      },
+      "popup-raised": {
+        "role": "neutral",
+        "displayName": "Raised Folder (popup)",
+        "canonical": "#1d1e1b",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#252524",
+          "#424240",
+          "#61625e",
+          "#82837f",
+          "#a4a5a3",
+          "#c9c9c8",
+          "#eeeeed"
+        ]
+      },
+      "popup-selected": {
+        "role": "neutral",
+        "displayName": "Selected Folder (popup)",
+        "canonical": "#33352f",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#41433f",
+          "#60625c",
+          "#81837d",
+          "#a4a6a1",
+          "#c8c9c7",
+          "#eeefed"
+        ]
+      },
+      "popup-engraving": {
+        "role": "neutral",
+        "displayName": "Engraving White (popup)",
+        "canonical": "#ecebe5",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#43423f",
+          "#62615d",
+          "#83827e",
+          "#a6a5a2",
+          "#c9c9c7",
+          "#efeeed"
+        ]
+      },
+      "popup-grey": {
+        "role": "neutral",
+        "displayName": "Folder Grey (popup)",
+        "canonical": "#8f9288",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#41433d",
+          "#60625a",
+          "#81847b",
+          "#a4a6a0",
+          "#c8cac6",
+          "#eeefec"
+        ]
+      },
+      "popup-mark": {
+        "role": "neutral",
+        "displayName": "Rest Grey (popup)",
+        "canonical": "#7d8076",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252522",
+          "#41433d",
+          "#60625a",
+          "#81847b",
+          "#a4a69f",
+          "#c8cac6",
+          "#eeefec"
+        ]
+      },
+      "popup-rule": {
+        "role": "neutral",
+        "displayName": "Staff Hairline (popup)",
+        "canonical": "#262824",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252524",
+          "#414240",
+          "#60625e",
+          "#81837f",
+          "#a4a6a2",
+          "#c8c9c7",
+          "#eeefed"
+        ]
+      },
+      "popup-edge": {
+        "role": "neutral",
+        "displayName": "Folder Edge (popup)",
+        "canonical": "#3d3f39",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#252523",
+          "#41433f",
+          "#60625c",
+          "#81837d",
+          "#a4a6a1",
+          "#c9c9c7",
+          "#eeefed"
+        ]
       }
     },
     "typographyMeta": {
@@ -229,6 +349,46 @@
       "data": {
         "displayName": "Data",
         "purpose": "The register, in tabular numerals; column heads 700 at 13px."
+      },
+      "popup-host": {
+        "displayName": "Popup Host",
+        "purpose": "The site's hostname in the popup, one line with an ellipsis; 18px Folder Grey for 'Not a web page'."
+      },
+      "popup-state": {
+        "displayName": "Popup State",
+        "purpose": "The sentence heading the change list."
+      },
+      "popup-body": {
+        "displayName": "Popup Body",
+        "purpose": "Switch-row and segment labels (segments 500, 600 when selected)."
+      },
+      "popup-brand": {
+        "displayName": "Popup Brand",
+        "purpose": "'Tacet' beside the 20px icon."
+      },
+      "popup-button": {
+        "displayName": "Popup Button",
+        "purpose": "Zap now and Undo on this page."
+      },
+      "popup-small": {
+        "displayName": "Popup Small",
+        "purpose": "Mode hint, notes, change reasons (two lines max) and the debug row."
+      },
+      "popup-kind": {
+        "displayName": "Popup Kind",
+        "purpose": "Uppercase kind column of the change list."
+      },
+      "popup-time": {
+        "displayName": "Popup Time",
+        "purpose": "Change times in tabular numerals; row numbers at 11px italic."
+      },
+      "popup-selector": {
+        "displayName": "Popup Selector",
+        "purpose": "The changed element's selector; the only monospace in the popup."
+      },
+      "popup-count": {
+        "displayName": "Popup Count",
+        "purpose": "Tacet Figures (Bravura's time-signature digits, SIL OFL 1.1) for the count above the rest, and nothing else. Bundled; font-display: block."
       }
     },
     "shadows": [
@@ -236,6 +396,11 @@
         "name": "drawn-outline",
         "value": "inset 0 0 0 1.5px #20231d",
         "purpose": "The only box-shadow in the system: an ink outline on the secondary button and the switch track. A line, not elevation; the site casts no shadows."
+      },
+      {
+        "name": "popup-drawn-bar",
+        "value": "inset 0 0 0 1.5px currentColor",
+        "purpose": "Popup only: draws the rest's bar as an outline while Tacet watches (lime) or is off (Rest Grey). A line, not elevation."
       }
     ],
     "motion": [
@@ -273,6 +438,16 @@
         "name": "anchor-scroll",
         "value": "scroll-behavior: smooth; scroll-padding-top: 32px",
         "purpose": "In-page anchors, inherited from the family. Auto under reduced motion."
+      },
+      {
+        "name": "popup-ease",
+        "value": "180ms ease-out",
+        "purpose": "Popup only: switch thumbs (18px slide), switch track colours and the selected segment's slide; also segment label colour, button fill and border, and the rest bar's colour. Every transition off under prefers-reduced-motion."
+      },
+      {
+        "name": "popup-more-below",
+        "value": "mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent)",
+        "purpose": "Popup change list: static fade on the last 32px while more rows remain below; removed at the end of the scroll. Not animated."
       }
     ],
     "breakpoints": [
@@ -291,6 +466,10 @@
       {
         "name": "narrow",
         "value": "380px"
+      },
+      {
+        "name": "popup-touch",
+        "value": "(pointer: coarse)"
       }
     ]
   },
@@ -373,11 +552,67 @@
       "description": "Support's quick checks: hairline-separated details, 650 summaries with a drawn chevron that flips open, muted answers; olive on hover.",
       "html": "<div class=\"ds-disclosures\"><details open><summary>A wall is still on the page</summary><p>Open Tacet’s popup from the toolbar and press <strong>Zap now</strong>: it hides whatever still covers the page and unlocks scrolling.</p></details><details><summary>Something I opened disappeared</summary><p>Press <strong>Undo on this page</strong> in the popup, or switch Tacet off for the site, then report the page.</p></details></div>",
       "css": ".ds-disclosures { background: var(--paper, #f6f5ef); color: var(--ink, #20231d); font: 400 17px/1.7 system-ui, -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif; } .ds-disclosures details { border-top: 1px solid var(--line, #d5d8ca); } .ds-disclosures details:last-child { border-bottom: 1px solid var(--line, #d5d8ca); } .ds-disclosures summary { position: relative; padding: 20px 28px 20px 0; list-style: none; cursor: pointer; font-weight: 650; line-height: 1.5; } .ds-disclosures summary::-webkit-details-marker { display: none; } .ds-disclosures summary::after { content: \"\"; position: absolute; top: 27px; right: 4px; width: 8px; height: 8px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); } .ds-disclosures details[open] summary::after { top: 31px; transform: rotate(225deg); } .ds-disclosures summary:hover { color: var(--green, #526600); } .ds-disclosures summary:focus-visible { outline: 3px solid var(--green, #526600); outline-offset: 4px; border-radius: 2px; } .ds-disclosures p { margin: 0 0 24px; padding-right: 28px; color: var(--muted, #5c6353); }"
+    },
+    {
+      "name": "Popup Rest",
+      "kind": "custom",
+      "refersTo": "popup-rest-acted",
+      "description": "Popup signature. The count of what Tacet silenced as a multi-measure rest: acted (solid lime, figure), watching (lime outline), off (Rest Grey outline). The real figure uses the bundled Tacet Figures font; system numerals stand in here.",
+      "html": "<div class=\"ds-popup ds-rest-row\"><div class=\"ds-rest\" data-state=\"acted\"><span class=\"ds-figure\">3</span><span class=\"ds-bar\"></span></div><div class=\"ds-rest\" data-state=\"watching\"><span class=\"ds-bar\"></span></div><div class=\"ds-rest\" data-state=\"off\"><span class=\"ds-bar\"></span></div></div>",
+      "css": ":host, .ds-popup { --folder: #141513; --raised: #1d1e1b; --selected: #33352f; --engraving: #ecebe5; --lime: #d5ed75; --grey: #8f9288; --mark: #7d8076; --rule: #262824; --edge: #3d3f39; } .ds-popup { width: 340px; padding: 14px 16px 12px; background: var(--folder); color: var(--engraving); font: 13px/1.35 system-ui, -apple-system, \"Segoe UI\", sans-serif; } .ds-rest-row { display: flex; gap: 24px; } .ds-rest { position: relative; width: 64px; height: 48px; color: var(--lime); } .ds-rest::before { content: \"\"; position: absolute; inset: auto 0 10px; height: 1px; background: var(--edge); } .ds-bar { position: absolute; inset: auto 8px 7px; height: 7px; border-radius: 1px; background: currentColor; transition: background-color 180ms ease-out, box-shadow 180ms ease-out; } .ds-bar::before, .ds-bar::after { content: \"\"; position: absolute; top: -4px; width: 3px; height: 15px; border-radius: 1px; background: currentColor; } .ds-bar::before { left: -2px; } .ds-bar::after { right: -2px; } .ds-figure { position: absolute; inset: 16px 0 auto; height: 0; color: var(--engraving); font: 56px/0 \"Tacet Figures\", Georgia, serif; text-align: center; } .ds-rest[data-state=\"watching\"] .ds-bar, .ds-rest[data-state=\"off\"] .ds-bar { background: transparent; box-shadow: inset 0 0 0 1.5px currentColor; } .ds-rest[data-state=\"off\"] { color: var(--mark); }"
+    },
+    {
+      "name": "Popup Segmented Control",
+      "kind": "nav",
+      "refersTo": "popup-segments",
+      "description": "Where Tacet runs: three radios drawn as a segmented control whose Selected Folder block slides under the checked label over 180ms ease-out.",
+      "html": "<fieldset class=\"ds-popup ds-modes\"><legend class=\"ds-sr\">Where Tacet runs</legend><div class=\"ds-segments\"><label><input type=\"radio\" name=\"ds-mode\" value=\"sites\" checked>Chosen sites</label><label><input type=\"radio\" name=\"ds-mode\" value=\"on\">All sites</label><label><input type=\"radio\" name=\"ds-mode\" value=\"off\">Off</label></div><p class=\"ds-hint\">Runs only on the sites you switch on.</p></fieldset>",
+      "css": ":host, .ds-popup { --folder: #141513; --raised: #1d1e1b; --selected: #33352f; --engraving: #ecebe5; --lime: #d5ed75; --grey: #8f9288; --mark: #7d8076; --rule: #262824; --edge: #3d3f39; } .ds-popup { width: 340px; padding: 14px 16px 12px; background: var(--folder); color: var(--engraving); font: 13px/1.35 system-ui, -apple-system, \"Segoe UI\", sans-serif; } .ds-modes { margin: 0; border: 0; } .ds-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); } .ds-segments { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); height: 34px; padding: 3px; border: 1px solid var(--rule); border-radius: 9px; background: var(--raised); } .ds-segments::before { content: \"\"; position: absolute; inset: 3px auto 3px 3px; width: calc((100% - 6px) / 3); border-radius: 6px; background: var(--selected); transition: transform 180ms ease-out; } .ds-segments:has([value=\"on\"]:checked)::before { transform: translateX(100%); } .ds-segments:has([value=\"off\"]:checked)::before { transform: translateX(200%); } .ds-segments label { position: relative; display: grid; place-items: center; border-radius: 6px; color: var(--grey); font-weight: 500; cursor: pointer; transition: color 180ms ease-out; } .ds-segments label:hover { color: var(--engraving); } .ds-segments label:has(:checked) { color: var(--engraving); font-weight: 600; } .ds-segments label:has(:focus-visible) { outline: 2px solid var(--lime); outline-offset: -1px; } .ds-segments input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; } .ds-hint { margin: 7px 0 0; color: var(--grey); font-size: 12px; } @media (prefers-reduced-motion: reduce) { .ds-segments::before, .ds-segments label { transition: none; } }"
+    },
+    {
+      "name": "Popup Switch Rows",
+      "kind": "input",
+      "refersTo": "popup-switch-track",
+      "description": "Label left, switch right, the whole 44px row toggles it; hairline between rows. Off: Folder Edge track, grey thumb. On: lime track, folder-black thumb.",
+      "html": "<div class=\"ds-popup\"><label class=\"ds-row\"><span>Active on this site</span><span class=\"ds-switch\"><input type=\"checkbox\" role=\"switch\" checked></span></label><label class=\"ds-row\"><span>Also hide cookie banners that don’t block the page</span><span class=\"ds-switch\"><input type=\"checkbox\" role=\"switch\"></span></label></div>",
+      "css": ":host, .ds-popup { --folder: #141513; --raised: #1d1e1b; --selected: #33352f; --engraving: #ecebe5; --lime: #d5ed75; --grey: #8f9288; --mark: #7d8076; --rule: #262824; --edge: #3d3f39; } .ds-popup { width: 340px; padding: 14px 16px 12px; background: var(--folder); color: var(--engraving); font: 13px/1.35 system-ui, -apple-system, \"Segoe UI\", sans-serif; } .ds-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 44px; padding: 9px 0; cursor: pointer; } .ds-row + .ds-row { border-top: 1px solid var(--rule); } .ds-switch { position: relative; flex: none; width: 44px; height: 26px; border-radius: 13px; background: var(--edge); transition: background-color 180ms ease-out; } .ds-switch::after { content: \"\"; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--grey); pointer-events: none; transition: transform 180ms ease-out, background-color 180ms ease-out; } .ds-switch:has(:checked) { background: var(--lime); } .ds-switch:has(:checked)::after { background: var(--folder); transform: translateX(18px); } .ds-switch:has(:focus-visible) { outline: 2px solid var(--lime); outline-offset: 2px; } .ds-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: inherit; } @media (prefers-reduced-motion: reduce) { .ds-switch, .ds-switch::after { transition: none; } }"
+    },
+    {
+      "name": "Popup Primary Button",
+      "kind": "button",
+      "refersTo": "popup-button-primary",
+      "description": "Zap now: engraving-white fill, folder-black text, 8px corners, 34px tall; white on hover.",
+      "html": "<div class=\"ds-popup\"><button class=\"ds-pbtn ds-pbtn-primary\" type=\"button\">Zap now</button></div>",
+      "css": ":host, .ds-popup { --folder: #141513; --raised: #1d1e1b; --selected: #33352f; --engraving: #ecebe5; --lime: #d5ed75; --grey: #8f9288; --mark: #7d8076; --rule: #262824; --edge: #3d3f39; } .ds-popup { width: 340px; padding: 14px 16px 12px; background: var(--folder); color: var(--engraving); font: 13px/1.35 system-ui, -apple-system, \"Segoe UI\", sans-serif; } .ds-pbtn { width: 100%; height: 34px; padding: 0 10px; border: 1px solid var(--edge); border-radius: 8px; background: transparent; color: var(--engraving); font: 600 13px/1 system-ui, -apple-system, \"Segoe UI\", sans-serif; cursor: pointer; transition: background-color 180ms ease-out, border-color 180ms ease-out; } .ds-pbtn:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; } .ds-pbtn-primary { border-color: var(--engraving); background: var(--engraving); color: var(--folder); } .ds-pbtn-primary:hover { border-color: #ffffff; background: #ffffff; } .ds-pbtn-primary:active { background: #d9d8d1; }"
+    },
+    {
+      "name": "Popup Secondary Button",
+      "kind": "button",
+      "refersTo": "popup-button",
+      "description": "Undo on this page: transparent with a 1px Folder Edge border; Raised Folder on hover, Selected Folder on press; Rest Grey text when disabled.",
+      "html": "<div class=\"ds-popup\" style=\"display:flex;gap:8px\"><button class=\"ds-pbtn\" type=\"button\">Undo on this page</button><button class=\"ds-pbtn\" type=\"button\" disabled>Undo on this page</button></div>",
+      "css": ":host, .ds-popup { --folder: #141513; --raised: #1d1e1b; --selected: #33352f; --engraving: #ecebe5; --lime: #d5ed75; --grey: #8f9288; --mark: #7d8076; --rule: #262824; --edge: #3d3f39; } .ds-popup { width: 340px; padding: 14px 16px 12px; background: var(--folder); color: var(--engraving); font: 13px/1.35 system-ui, -apple-system, \"Segoe UI\", sans-serif; } .ds-pbtn { flex: 1; height: 34px; padding: 0 10px; border: 1px solid var(--edge); border-radius: 8px; background: transparent; color: var(--engraving); font: 600 13px/1 system-ui, -apple-system, \"Segoe UI\", sans-serif; cursor: pointer; transition: background-color 180ms ease-out, border-color 180ms ease-out; } .ds-pbtn:hover { border-color: var(--grey); background: var(--raised); } .ds-pbtn:active { background: var(--selected); } .ds-pbtn:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; } .ds-pbtn:disabled, .ds-pbtn:disabled:hover { border-color: var(--rule); background: transparent; color: var(--mark); cursor: default; }"
+    },
+    {
+      "name": "Popup Change List",
+      "kind": "custom",
+      "refersTo": "popup-change-row",
+      "description": "What Tacet did, on hairlines in fixed columns (number, kind, selector, time; reason under). While more rows remain below, the last 32px fade out.",
+      "html": "<section class=\"ds-popup\"><h2 class=\"ds-state\">3 changes on this page</h2><ol class=\"ds-list\" data-more><li><span class=\"ds-no\">1</span><span class=\"ds-kind\">Overlay</span><code>div#didomi-host</code><span class=\"ds-time\">0.1s</span><span class=\"ds-why\">Didomi signature</span></li><li><span class=\"ds-no\">2</span><span class=\"ds-kind\">Scroll</span><code>html.didomi-popup-open</code><span class=\"ds-time\">0.1s</span><span class=\"ds-why\">wall hidden: overflow</span></li><li><span class=\"ds-no\">3</span><span class=\"ds-kind\">Content</span><code>main</code><span class=\"ds-time\">0.2s</span><span class=\"ds-why\">blur removed</span></li></ol></section>",
+      "css": ":host, .ds-popup { --folder: #141513; --raised: #1d1e1b; --selected: #33352f; --engraving: #ecebe5; --lime: #d5ed75; --grey: #8f9288; --mark: #7d8076; --rule: #262824; --edge: #3d3f39; } .ds-popup { width: 340px; padding: 14px 16px 12px; background: var(--folder); color: var(--engraving); font: 13px/1.35 system-ui, -apple-system, \"Segoe UI\", sans-serif; } .ds-state { margin: 0; font-size: 14px; font-weight: 600; } .ds-list { max-height: 120px; margin: 4px 0 0; padding: 0; overflow-y: auto; list-style: none; scrollbar-color: var(--mark) transparent; scrollbar-width: thin; } .ds-list[data-more] { mask-image: linear-gradient(to bottom, #000 calc(100% - 32px), transparent); } .ds-list li { display: grid; grid-template-columns: 14px 58px minmax(0, 1fr) auto; column-gap: 8px; align-items: baseline; padding: 9px 0 8px; border-bottom: 1px solid var(--rule); } .ds-no { color: var(--grey); font-size: 11px; font-style: italic; font-variant-numeric: tabular-nums; } .ds-kind { color: var(--grey); font-size: 10.5px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; } .ds-list code { overflow: hidden; font: 12px/1.35 ui-monospace, \"SF Mono\", \"Cascadia Mono\", Consolas, monospace; text-overflow: ellipsis; white-space: nowrap; } .ds-time { color: var(--grey); font-size: 11.5px; font-variant-numeric: tabular-nums; text-align: right; } .ds-why { grid-column: 3 / 5; color: var(--grey); font-size: 12px; }"
+    },
+    {
+      "name": "Popup Final Bar and Debug Row",
+      "kind": "custom",
+      "refersTo": "popup-debug-row",
+      "description": "The popup closes on a final double bar (1px over 3px, Rest Grey), with the quiet debug switch row under it in 12px Folder Grey.",
+      "html": "<footer class=\"ds-popup ds-foot\"><label class=\"ds-debug\"><span>Debug log in the page console</span><span class=\"ds-switch\"><input type=\"checkbox\" role=\"switch\"></span></label></footer>",
+      "css": ":host, .ds-popup { --folder: #141513; --raised: #1d1e1b; --selected: #33352f; --engraving: #ecebe5; --lime: #d5ed75; --grey: #8f9288; --mark: #7d8076; --rule: #262824; --edge: #3d3f39; } .ds-popup { width: 340px; padding: 14px 16px 12px; background: var(--folder); color: var(--engraving); font: 13px/1.35 system-ui, -apple-system, \"Segoe UI\", sans-serif; } .ds-foot::before { content: \"\"; display: block; height: 7px; margin-bottom: 4px; border-top: 1px solid var(--mark); border-bottom: 3px solid var(--mark); } .ds-debug { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 6px 0 0; color: var(--grey); font-size: 12px; cursor: pointer; } .ds-switch { position: relative; flex: none; width: 44px; height: 26px; border-radius: 13px; background: var(--edge); transition: background-color 180ms ease-out; } .ds-switch::after { content: \"\"; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--grey); pointer-events: none; transition: transform 180ms ease-out, background-color 180ms ease-out; } .ds-switch:has(:checked) { background: var(--lime); } .ds-switch:has(:checked)::after { background: var(--folder); transform: translateX(18px); } .ds-switch:has(:focus-visible) { outline: 2px solid var(--lime); outline-offset: 2px; } .ds-switch input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: inherit; } @media (prefers-reduced-motion: reduce) { .ds-switch, .ds-switch::after { transition: none; } }"
     }
   ],
   "narrative": {
     "northStar": "The Unpressed Page",
-    "overview": "A reader's page in paper and ink. Whatever a site demands of the reader shows up as a key nobody presses: a pale, dashed outline at display size, drawn but inert. Tacet's own voice speaks only from ink panels with lime type, and one lime highlighter marks the answer. Everything else is quiet: warm off-white paper, olive-black ink, hairline rules, generous 17px/1.7 reading text, no shadows, no imagery beyond the mark.\n\nThe world is inherited, not invented. It belongs to the sg-x family (the user's sibling extension, sg-x/docs/styles.css), chosen explicitly as \"same family as sg-x\". The shared family layer is identical value for value: paper, ink, muted, line, green, lime, tint, the selection colour, the system UI stack, the 1120px content and 720px reading widths, the section rhythm, header, footer, links, buttons, Read-page layouts and disclosures. Tacet adds four tokens and the devices built on them: the unpressed key colours (text and dashed line), the ink-panel rule and muted tokens, the switch, the readout, the ruled register, the lime highlighter under the answer, and the wash motion. Tacet extends the family without retuning any of its values.\n\nTwo things sit in the repository but outside this world. The made-up newspaper inside the homepage demo (docs/demo/demo.css, en.html, fr.html) imitates a generic news site on purpose, with a white ground, Georgia serif, a drop-shadowed consent box and uppercase tracked datelines. It is a contained exception that lives only inside the demo frame. The extension's toolbar popup (src/popup/) predates this world and is not part of it.",
+    "overview": "A reader's page in paper and ink. Whatever a site demands of the reader shows up as a key nobody presses: a pale, dashed outline at display size, drawn but inert. Tacet's own voice speaks only from ink panels with lime type, and one lime highlighter marks the answer. Everything else is quiet: warm off-white paper, olive-black ink, hairline rules, generous 17px/1.7 reading text, no shadows, no imagery beyond the mark.\n\nThe world is inherited, not invented. It belongs to the sg-x family (the user's sibling extension, sg-x/docs/styles.css), chosen explicitly as \"same family as sg-x\". The shared family layer is identical value for value: paper, ink, muted, line, green, lime, tint, the selection colour, the system UI stack, the 1120px content and 720px reading widths, the section rhythm, header, footer, links, buttons, Read-page layouts and disclosures. Tacet adds four tokens and the devices built on them: the unpressed key colours (text and dashed line), the ink-panel rule and muted tokens, the switch, the readout, the ruled register, the lime highlighter under the answer, and the wash motion. Tacet extends the family without retuning any of its values.\n\nTwo things sit in the repository but outside this world. The made-up newspaper inside the homepage demo (docs/demo/demo.css, en.html, fr.html) imitates a generic news site on purpose, with a white ground, Georgia serif, a drop-shadowed consent box and uppercase tracked datelines. It is a contained exception that lives only inside the demo frame. The extension's toolbar popup (src/popup/) has its own dark world, documented in its own section, The Toolbar Popup, at the end of this file.",
     "keyCharacteristics": [
       "Paper ground (#f6f5ef) everywhere; depth comes from tone (tint card, ink panel), never from shadow.",
       "One type family at weights 400 to 750; display character comes from weight 750 and tracking down to -0.045em.",
@@ -427,6 +662,21 @@
         "name": "The One Motion Rule",
         "body": "A status changes in place under a brief lime wash: the background goes from rgb(213 237 117 / 22%) to transparent over 900ms on cubic-bezier(0.16, 1, 0.3, 1). New readout entries and turning register rows use it, and nothing else animates apart from the switch's own knob. Under prefers-reduced-motion the wash, the switch transitions and smooth anchor scrolling are all off, and the register shows its final state from the start.",
         "section": "components"
+      },
+      {
+        "name": "The Live Lime Rule",
+        "body": "In the popup, lime means \"live now\". It appears only on a switch that is on, the rest while Tacet acts or watches, and focus. It is never decoration, never text and never a button fill.",
+        "section": "popup"
+      },
+      {
+        "name": "The Two Greys Rule",
+        "body": "Folder Grey (#8f9288) is for words and Rest Grey (#7d8076) is for marks. Secondary text never drops to Rest Grey.",
+        "section": "popup"
+      },
+      {
+        "name": "The Engraved Figure Rule",
+        "body": "Tacet Figures sets the count above the rest and nothing else. Every other figure in the popup is system UI in tabular numerals.",
+        "section": "popup"
       }
     ],
     "dos": [
@@ -450,6 +700,36 @@
       "Don't retune a family token (paper, ink, muted, line, green, lime, tint); add a named token beside it instead.",
       "Don't show site or consent-tool logos; their names stay plain text.",
       "Don't carry the demo newspaper's styles (Georgia serif, white ground, shadowed box, uppercase tracked datelines) out of the demo frame."
-    ]
+    ],
+    "popup": {
+      "northStar": "The Orchestral Part",
+      "overview": "The popup is an instrument's part on a black stand folder. What Tacet silenced on this page is counted the way engraved music counts silence: a multi-measure rest with its figure above it. Engraving white sits on folder black, hairlines run like staff lines, and lime marks only what is live. The page closes on a final double bar, and the debug row sits quietly below it. It is dense and small, a 340px instrument read in two seconds, not a reading page.\n\nThe popup is dark only, by the user's choice. It has no light mode and does not follow the system's colour scheme (color-scheme: dark, fixed).",
+      "keyCharacteristics": [
+        "Folder black (#141513) ground, engraving white (#ecebe5) text; dark only, never matched to the system.",
+        "Lime only for live state: switches on, the rest when Tacet acted or watches, focus.",
+        "The count is a multi-measure rest with a Tacet Figures numeral above it.",
+        "Hairline rows (#262824) like staff lines; the foot closes on a final double bar.",
+        "One motion: switch thumbs, track colours and the selected segment over 180ms ease-out."
+      ],
+      "dos": [
+        "Do keep the popup dark only: folder black (#141513) ground, engraving white (#ecebe5) text, color-scheme: dark.",
+        "Do keep lime (#d5ed75) for live state only: a switch on, the rest while Tacet acts or watches, focus.",
+        "Do count what Tacet silenced as the rest with its Tacet Figures numeral, and change its state in place by colour and fill.",
+        "Do set secondary text in Folder Grey (#8f9288) and keep Rest Grey (#7d8076) for marks, disabled text and the double bar.",
+        "Do put each switch on the right of a 44px row whose whole width toggles it.",
+        "Do rule rows with 1px Staff Hairlines (#262824) and close the page on the final double bar.",
+        "Do keep monospace for selectors and tabular numerals for times and row numbers.",
+        "Do move only switch thumbs, track colours and the selected segment, over 180ms ease-out, and nothing under reduced motion.",
+        "Do ship every font inside the package; the popup makes no network requests."
+      ],
+      "donts": [
+        "Don't add a light theme or follow the system's colour scheme.",
+        "Don't use lime as text, as a button fill or as decoration.",
+        "Don't carry the website's paper, ink, unpressed keys or wash into the popup, or the popup's folder palette onto the site.",
+        "Don't set any figure other than the count in Tacet Figures, or any text other than selectors in monospace.",
+        "Don't add a power button, a \"blocked\" badge or icons to buttons.",
+        "Don't add shadows for depth; step from folder to Raised Folder to Selected Folder instead."
+      ]
+    }
   }
 }

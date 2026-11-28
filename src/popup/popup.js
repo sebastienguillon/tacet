@@ -3,8 +3,8 @@ const $ = (id) => document.getElementById(id);
 
 // The settings are described in src/content/tacet.js, next to its runsOn().
 const HINTS = {
-  sites: "Runs only on the sites you switch on below.",
-  on: "Runs on every site, except those you switch off below.",
+  sites: "Runs only on the sites you switch on.",
+  on: "Runs on every site, except those you switch off.",
   off: "Off everywhere. Zap now still works on this page.",
 };
 
@@ -49,35 +49,73 @@ async function readSettings() {
   };
 }
 
-function render(st) {
+// What Tacet did on the page, counted on the rest: lime with its figure when it
+// acted, an outline while it watches, grey when it is off here.
+function render(st, s) {
   const list = $("list");
   list.textContent = "";
+  $("notes").textContent = "";
   if (!st) {
-    $("host").textContent = "";
+    $("host").textContent = "Not a web page";
+    $("host").className = "none";
+    $("rest").dataset.state = "none";
+    $("figure").textContent = "";
     $("state").textContent = "Tacet does not run on this page.";
+    $("notes").textContent =
+      "It runs only on web pages: not on browser pages, extension stores or files on your computer.";
     for (const id of ["site", "zap", "undo"]) $(id).disabled = true;
     return;
   }
   $("host").textContent = st.host;
-  const bits = [];
-  if (!st.active) bits.push("Inactive on this page.");
-  if (st.paused) bits.push("Cookie settings opened by you: vendor dialogs are shown.");
-  if (st.locked.length) bits.push(`Scroll still locked (${st.locked.join(", ")}).`);
-  const hides = st.actions.filter((a) => a.type === "hide").length;
-  bits.push(hides ? `${hides} element${hides > 1 ? "s" : ""} hidden.` : "Nothing hidden.");
-  $("state").textContent = bits.join(" ");
-  for (const a of st.actions) {
+  $("host").className = "";
+  $("host").title = st.host;
+  const n = st.actions.length;
+  $("rest").dataset.state = !st.active ? "off" : n ? "acted" : "watching";
+  $("figure").textContent = st.active && n ? String(n) : "";
+  const notes = [];
+  if (!st.active) {
+    $("state").textContent = "Not active on this page.";
+    if (s.mode !== "off")
+      notes.push(
+        runsOn(s.mode, s.sites, st.host)
+          ? "Undone here. Reload the page, or press Zap now, to run again."
+          : "Switch on Active on this site, or press Zap now for this page only.",
+      );
+  } else {
+    $("state").textContent = n
+      ? `${n} change${n > 1 ? "s" : ""} on this page`
+      : "Nothing to silence on this page yet.";
+  }
+  if (st.paused) notes.push("You opened this site’s cookie settings, so its dialogs are shown.");
+  if (st.locked.length) notes.push(`Scroll still locked (${st.locked.join(", ")}).`);
+  $("notes").textContent = notes.join(" ");
+  st.actions.forEach((a, i) => {
     const li = document.createElement("li");
+    const no = document.createElement("span");
+    no.className = "no";
+    no.textContent = String(i + 1);
     const kind = document.createElement("span");
     kind.className = "kind";
     kind.textContent = a.kind;
     const what = document.createElement("code");
     what.textContent = a.what;
-    const why = document.createElement("small");
-    why.textContent = `${a.reason} · ${(a.t / 1000).toFixed(1)}s${a.text ? " · “" + a.text + "”" : ""}`;
-    li.append(kind, what, why);
+    what.title = a.what;
+    const time = document.createElement("span");
+    time.className = "time";
+    time.textContent = `${(a.t / 1000).toFixed(1)}s`;
+    const why = document.createElement("span");
+    why.className = "why";
+    why.textContent = a.text ? `${a.reason} · “${a.text}”` : a.reason;
+    li.append(no, kind, what, time, why);
     list.append(li);
-  }
+  });
+  more();
+}
+
+// Marks a list that scrolls and is not at its end, for the fade on its last row.
+function more() {
+  const list = $("list");
+  list.toggleAttribute("data-more", list.scrollTop + list.clientHeight < list.scrollHeight - 1);
 }
 
 async function init() {
@@ -92,12 +130,12 @@ async function init() {
     $("site").disabled = !st || s.mode === "off";
   };
   // The content script follows storage changes; show the page once it has.
-  const refresh = () => setTimeout(async () => render(await send("tacet:status")), 150);
+  const refresh = () => setTimeout(async () => render(await send("tacet:status"), s), 150);
 
   for (const r of modes) r.checked = r.value === s.mode;
   $("debug").checked = s.debug;
   $("banners").checked = s.banners;
-  render(st);
+  render(st, s);
   showSite();
 
   for (const r of modes)
@@ -114,12 +152,13 @@ async function init() {
     await api.storage.local.set({ sites });
     refresh();
   });
+  $("list").addEventListener("scroll", more, { passive: true });
   $("debug").addEventListener("change", () => api.storage.local.set({ debug: $("debug").checked }));
   $("banners").addEventListener("change", () =>
     api.storage.local.set({ banners: $("banners").checked }),
   );
-  $("zap").addEventListener("click", async () => render(await send("tacet:zap")));
-  $("undo").addEventListener("click", async () => render(await send("tacet:undo")));
+  $("zap").addEventListener("click", async () => render(await send("tacet:zap"), s));
+  $("undo").addEventListener("click", async () => render(await send("tacet:undo"), s));
 }
 
 init();

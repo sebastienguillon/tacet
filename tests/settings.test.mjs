@@ -268,7 +268,7 @@ for (const [engine, type] of [
           ],
         );
         assert.deepEqual(await view(p), { mode: "sites", site: false, siteEnabled: true });
-        assert.equal(await p.textContent("#hint"), "Runs only on the sites you switch on below.");
+        assert.equal(await p.textContent("#hint"), "Runs only on the sites you switch on.");
         await p.close();
       });
 
