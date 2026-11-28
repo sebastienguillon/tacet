@@ -2,17 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body>
     <header>
-      <img src="../icons/icon-32.png" width="20" height="20" alt="" />
-      <strong>Tacet</strong>
-      <span id="host"></span>
+      <div class="brand">
+        <img src="../icons/icon-32.png" width="20" height="20" alt="" />
+        <strong>Tacet</strong>
+      </div>
+      <div class="site">
+        <h1 id="host"></h1>
+        <div class="rest" id="rest" data-state="none" aria-hidden="true">
+          <span class="figure" id="figure"></span>
+          <span class="bar"></span>
+        </div>
+      </div>
     </header>
 
     <fieldset class="modes">
-      <legend>Where Tacet runs</legend>
+      <legend class="sr">Where Tacet runs</legend>
       <div class="segments">
         <label><input type="radio" name="mode" value="sites" />Chosen sites</label>
         <label><input type="radio" name="mode" value="on" />All sites</label>
@@ -21,14 +31,23 @@
       <p id="hint"></p>
     </fieldset>
 
-    <label class="row"><input type="checkbox" id="site" /> Active on this site</label>
-    <label class="row"
-      ><input type="checkbox" id="banners" /> Also hide non-blocking cookie banners</label
-    >
-    <label class="row"><input type="checkbox" id="debug" /> Debug log in the page console</label>
+    <div class="switches">
+      <label class="row">
+        <span>Active on this site</span>
+        <span class="switch"><input type="checkbox" role="switch" id="site" /></span>
+      </label>
+      <label class="row">
+        <span>Also hide cookie banners that don’t block the page</span>
+        <span class="switch"><input type="checkbox" role="switch" id="banners" /></span>
+      </label>
+    </div>
 
     <div class="buttons">
-      <button id="zap" title="Hide whatever still covers the page and unlock scrolling">
+      <button
+        id="zap"
+        class="primary"
+        title="Hide whatever still covers the page and unlock scrolling"
+      >
         Zap now
       </button>
       <button id="undo" title="Restore everything Tacet changed on this page">
@@ -36,8 +55,18 @@
       </button>
     </div>
 
-    <p id="state"></p>
-    <ul id="list"></ul>
+    <section class="result" aria-live="polite">
+      <h2 id="state"></h2>
+      <p id="notes"></p>
+      <ol id="list"></ol>
+    </section>
+
+    <footer>
+      <label class="row debug">
+        <span>Debug log in the page console</span>
+        <span class="switch"><input type="checkbox" role="switch" id="debug" /></span>
+      </label>
+    </footer>
     <script src="popup.js"></script>
   </body>
 </html>

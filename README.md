@@ -93,6 +93,7 @@ Clicking a "cookie settings" control, such as "Modifier mes choix cookies", rele
 | `scripts/site.mjs`        | Copies the content script into `docs/demo/` for the website's demo                 |
 | `scripts/screenshots.mjs` | Takes the store screenshots from the website's demo page                           |
 | `scripts/lint-ext.mjs`    | Runs Mozilla's add-on linter on `src/`, allowing only the `service_worker` warning |
+| `scripts/figures.py`      | Builds the popup's count figures from Bravura's time-signature digits (fontTools)  |
 | `store/`                  | The store listing's text and release notes, one file per language, and screenshots |
 | `assets/`                 | The icon's SVG source                                                              |
 | `docs/`                   | The public website, published by GitHub Pages; French pages in `docs/fr/`          |

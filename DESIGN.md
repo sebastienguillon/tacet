@@ -14,6 +14,14 @@ colors:
   ink-line: "#3a3e35"
   ink-muted: "#b4b9a6"
   selection: "rgb(168 199 11 / 30%)"
+  popup-folder: "#141513"
+  popup-raised: "#1d1e1b"
+  popup-selected: "#33352f"
+  popup-engraving: "#ecebe5"
+  popup-grey: "#8f9288"
+  popup-mark: "#7d8076"
+  popup-rule: "#262824"
+  popup-edge: "#3d3f39"
 typography:
   display:
     fontFamily: 'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif'
@@ -74,12 +82,69 @@ typography:
     fontWeight: 400
     lineHeight: 1.45
     fontFeature: '"tnum"'
+  popup-host:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "24px"
+    fontWeight: 600
+    lineHeight: 1.1
+    letterSpacing: "-0.015em"
+  popup-state:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "14px"
+    fontWeight: 600
+    lineHeight: 1.35
+  popup-body:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "13px"
+    fontWeight: 400
+    lineHeight: 1.35
+  popup-brand:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "13px"
+    fontWeight: 600
+    lineHeight: 1.35
+    letterSpacing: "0.01em"
+  popup-button:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "13px"
+    fontWeight: 600
+    lineHeight: 1
+  popup-small:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "12px"
+    fontWeight: 400
+    lineHeight: 1.35
+  popup-kind:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "10.5px"
+    fontWeight: 600
+    letterSpacing: "0.07em"
+  popup-time:
+    fontFamily: 'system-ui, -apple-system, "Segoe UI", sans-serif'
+    fontSize: "11.5px"
+    fontWeight: 400
+    fontFeature: '"tnum"'
+  popup-selector:
+    fontFamily: 'ui-monospace, "SF Mono", "Cascadia Mono", Consolas, monospace'
+    fontSize: "12px"
+    fontWeight: 400
+    lineHeight: 1.35
+  popup-count:
+    fontFamily: '"Tacet Figures"'
+    fontSize: "56px"
+    fontWeight: 400
+    lineHeight: 0
 rounded:
   code: "3px"
   control: "8px"
   panel: "12px"
   pill: "17px"
   key: "0.17em"
+  popup-bar: "1px"
+  popup-icon: "5px"
+  popup-segment: "6px"
+  popup-segments: "9px"
+  popup-switch: "13px"
 spacing:
   content-width: "1120px"
   reading-width: "720px"
@@ -90,6 +155,12 @@ spacing:
   block: "32px"
   stack: "24px"
   tight: "12px"
+  popup-width: "340px"
+  popup-max-height: "600px"
+  popup-inset: "14px 16px 12px"
+  popup-width-touch: "480px"
+  popup-inset-touch: "20px"
+  popup-row: "44px"
 components:
   button-primary:
     backgroundColor: "{colors.ink}"
@@ -166,6 +237,79 @@ components:
   demo-frame:
     rounded: "{rounded.panel}"
     height: "560px"
+  popup-rest-acted:
+    textColor: "{colors.lime}"
+    width: "64px"
+    height: "48px"
+  popup-rest-watching:
+    textColor: "{colors.lime}"
+  popup-rest-off:
+    textColor: "{colors.popup-mark}"
+  popup-count:
+    textColor: "{colors.popup-engraving}"
+    typography: "{typography.popup-count}"
+  popup-segments:
+    backgroundColor: "{colors.popup-raised}"
+    rounded: "{rounded.popup-segments}"
+    padding: "3px"
+    height: "34px"
+  popup-segment:
+    textColor: "{colors.popup-grey}"
+    typography: "{typography.popup-body}"
+    rounded: "{rounded.popup-segment}"
+  popup-segment-selected:
+    backgroundColor: "{colors.popup-selected}"
+    textColor: "{colors.popup-engraving}"
+  popup-switch-row:
+    textColor: "{colors.popup-engraving}"
+    typography: "{typography.popup-body}"
+    padding: "9px 0"
+    height: "{spacing.popup-row}"
+  popup-switch-track:
+    backgroundColor: "{colors.popup-edge}"
+    rounded: "{rounded.popup-switch}"
+    width: "44px"
+    height: "26px"
+  popup-switch-track-on:
+    backgroundColor: "{colors.lime}"
+  popup-switch-thumb:
+    backgroundColor: "{colors.popup-grey}"
+    size: "20px"
+  popup-switch-thumb-on:
+    backgroundColor: "{colors.popup-folder}"
+  popup-button:
+    backgroundColor: "transparent"
+    textColor: "{colors.popup-engraving}"
+    typography: "{typography.popup-button}"
+    rounded: "{rounded.control}"
+    padding: "0 10px"
+    height: "34px"
+  popup-button-hover:
+    backgroundColor: "{colors.popup-raised}"
+  popup-button-active:
+    backgroundColor: "{colors.popup-selected}"
+  popup-button-primary:
+    backgroundColor: "{colors.popup-engraving}"
+    textColor: "{colors.popup-folder}"
+    typography: "{typography.popup-button}"
+    rounded: "{rounded.control}"
+    padding: "0 10px"
+    height: "34px"
+  popup-button-primary-hover:
+    backgroundColor: "#ffffff"
+  popup-button-primary-active:
+    backgroundColor: "#d9d8d1"
+  popup-button-disabled:
+    backgroundColor: "transparent"
+    textColor: "{colors.popup-mark}"
+  popup-change-row:
+    textColor: "{colors.popup-engraving}"
+    typography: "{typography.popup-selector}"
+    padding: "9px 0 8px"
+  popup-debug-row:
+    textColor: "{colors.popup-grey}"
+    typography: "{typography.popup-small}"
+    padding: "6px 0 0"
 ---
 
 # Design System: Tacet
@@ -178,7 +322,7 @@ A reader's page in paper and ink. Whatever a site demands of the reader shows up
 
 The world is inherited, not invented. It belongs to the sg-x family (the user's sibling extension, `sg-x/docs/styles.css`), chosen explicitly as "same family as sg-x". The shared family layer is identical value for value: paper, ink, muted, line, green, lime, tint, the selection colour, the system UI stack, the 1120px content and 720px reading widths, the section rhythm, header, footer, links, buttons, Read-page layouts and disclosures. Tacet adds four tokens and the devices built on them: the unpressed key colours (text and dashed line), the ink-panel rule and muted tokens, the switch, the readout, the ruled register, the lime highlighter under the answer, and the wash motion. Tacet extends the family without retuning any of its values.
 
-Two things sit in the repository but outside this world. The made-up newspaper inside the homepage demo (`docs/demo/demo.css`, `en.html`, `fr.html`) imitates a generic news site on purpose, with a white ground, Georgia serif, a drop-shadowed consent box and uppercase tracked datelines. It is a contained exception that lives only inside the demo frame. The extension's toolbar popup (`src/popup/`) predates this world and is not part of it.
+Two things sit in the repository but outside this world. The made-up newspaper inside the homepage demo (`docs/demo/demo.css`, `en.html`, `fr.html`) imitates a generic news site on purpose, with a white ground, Georgia serif, a drop-shadowed consent box and uppercase tracked datelines. It is a contained exception that lives only inside the demo frame. The extension's toolbar popup (`src/popup/`) has its own dark world, documented in its own section, The Toolbar Popup, at the end of this file.
 
 **Key Characteristics:**
 
@@ -381,3 +525,136 @@ The made-up page runs in an iframe with a 1px hairline border, 12px corners, a w
 - **Don't** retune a family token (paper, ink, muted, line, green, lime, tint); add a named token beside it instead.
 - **Don't** show site or consent-tool logos; their names stay plain text.
 - **Don't** carry the demo newspaper's styles (Georgia serif, white ground, shadowed box, uppercase tracked datelines) out of the demo frame.
+
+## The Toolbar Popup
+
+The popup (`src/popup/`) is a second world beside the website's, with its own tokens (every `popup-` key in the frontmatter). It shares only three things with the site: the family's Highlighter Lime (#d5ed75), the lime selection colour and the system UI sans. Everything else is its own. The website's rules above govern the website. The rules in this section govern the popup, and neither carries into the other.
+
+### Overview
+
+**Creative North Star: "The Orchestral Part"**
+
+The popup is an instrument's part on a black stand folder. What Tacet silenced on this page is counted the way engraved music counts silence: a multi-measure rest with its figure above it. Engraving white sits on folder black, hairlines run like staff lines, and lime marks only what is live. The page closes on a final double bar, and the debug row sits quietly below it. It is dense and small, a 340px instrument read in two seconds, not a reading page.
+
+The popup is dark only, by the user's choice. It has no light mode and does not follow the system's colour scheme (`color-scheme: dark`, fixed).
+
+**Key Characteristics:**
+
+- Folder black (#141513) ground, engraving white (#ecebe5) text; dark only, never matched to the system.
+- Lime only for live state: switches on, the rest when Tacet acted or watches, focus.
+- The count is a multi-measure rest with a Tacet Figures numeral above it.
+- Hairline rows (#262824) like staff lines; the foot closes on a final double bar.
+- One motion: switch thumbs, track colours and the selected segment over 180ms ease-out.
+
+### Colors
+
+A near-neutral black with a faint olive cast, one engraving white, two greys and one live lime.
+
+- **Highlighter Lime** (`{colors.lime}`, shared with the site): live state only. The switch track when on, the rest bar and its strokes when Tacet acted (solid) or watches (a 1.5px outline), and every focus ring. 14.1:1 on folder black.
+- **Folder Black** (#141513): the ground of the whole popup, and the thumb and text colour on lime and on the primary button.
+- **Raised Folder** (#1d1e1b): the segmented control's well and a button's hover fill.
+- **Selected Folder** (#33352f): the sliding selection in the segmented control and a button's pressed fill.
+- **Engraving White** (#ecebe5): all primary text, the count figure and the primary button's fill. 15.3:1 on folder black.
+- **Folder Grey** (#8f9288): secondary text, including the mode hint, notes, unselected segments, the change list's number, kind, time and reason, disabled switch rows, the debug row and the switch thumb when off. 5.8:1 on folder black, 5.3:1 on Raised Folder.
+- **Rest Grey** (#7d8076): marks rather than text, including the rest when Tacet is off, the final double bar, the list's scrollbar and disabled button text. 4.6:1 on folder black but 4.2:1 on Raised Folder, so it is never used for running secondary text.
+- **Staff Hairline** (#262824): every 1px rule, under the header, between switch rows and under each change, plus the segmented control's border and a disabled button's border.
+- **Folder Edge** (#3d3f39): the switch track when off, a button's 1px border and the rest's staff line.
+
+**The Live Lime Rule.** In the popup, lime means "live now". It appears only on a switch that is on, the rest while Tacet acts or watches, and focus. It is never decoration, never text and never a button fill.
+
+**The Two Greys Rule.** Folder Grey (#8f9288) is for words and Rest Grey (#7d8076) is for marks. Secondary text never drops to Rest Grey.
+
+### Typography
+
+**Labels and text:** system-ui (with -apple-system, "Segoe UI", sans-serif)
+**Selectors:** ui-monospace (with "SF Mono", "Cascadia Mono", Consolas, monospace)
+**Count:** Tacet Figures, Bravura's ten time-signature digits (SIL OFL 1.1, renamed as the licence requires), bundled as `src/popup/fonts/tacet-figures.woff2` with `font-display: block` and loaded from the package, never the network.
+
+- **Host** (600, 24px, 1.1, -0.015em): the site's hostname, one line, ending in an ellipsis. "Not a web page" drops to 18px in Folder Grey.
+- **Count** (Tacet Figures, 56px, line-height 0): the figure above the rest. A zero line-height puts the figure's middle on its line in every engine, because the glyphs are centred on their baseline with symmetric metrics.
+- **State** (600, 14px): the sentence that heads the change list ("3 changes on this page").
+- **Body** (400, 13px, 1.35): switch-row labels and segment labels (500, or 600 when selected).
+- **Brand** (600, 13px, 0.01em): "Tacet" beside the 20px icon.
+- **Button** (600, 13px, 1): Zap now and Undo on this page.
+- **Small** (400, 12px): the mode hint, notes, each change's reason (clamped to two lines) and the debug row.
+- **Kind** (600, 10.5px, 0.07em, uppercase): the change list's kind column (Overlay, Scroll, Content).
+- **Time and number** (11.5px and 11px italic, tabular numerals): the change list's time and row number.
+- **Selector** (monospace, 12px): the changed element, one line with an ellipsis. Monospace appears nowhere else.
+
+**The Engraved Figure Rule.** Tacet Figures sets the count above the rest and nothing else. Every other figure in the popup is system UI in tabular numerals.
+
+### Layout
+
+One column, 340px wide on desktop (`popup-width`), padded 14px 16px 12px, capped at 600px tall. Past that height the change list gives way and scrolls while everything above and below stays put. Order, top to bottom: the brand row, then the host on the left and the rest on the right (48px tall, bottom-aligned) above a hairline. Under them come the segmented mode control and its hint, the two switch rows, Zap now and Undo side by side (8px apart, equal widths), the state sentence, notes and the change list, then the final double bar and the debug row.
+
+The change list is a four-column grid (14px number, 58px kind, the selector, the time on the right), with the reason under the selector across the last two columns. Columns never change between rows.
+
+On a coarse pointer (Firefox for Android opens the popup as a full page), the body goes fluid up to 480px, centred, padded 20px, with no height cap. The segmented control and buttons grow to 44px. Switch rows are 44px tall everywhere.
+
+### Elevation & Depth
+
+Flat. Depth is three tones of folder: black for the ground, Raised Folder for the control well and hover, Selected Folder for the selection and press. No `box-shadow` casts a shadow. The one use is an inset 1.5px line of currentColor that draws the rest's bar as an outline while Tacet watches or is off.
+
+### Shapes
+
+Small, rounded instrument corners. Buttons use 8px (the site's `control` value), the segmented well 9px, its sliding selection 6px, the brand icon 5px. Switches are full pills (13px on a 26px track) with a round 20px thumb. The rest is engraved square: a 7px bar with two 3px by 15px end strokes, all with 1px corners, on a 1px Folder Edge staff line.
+
+Lines come in two kinds. The 1px Staff Hairline divides rows. The final double bar (1px over 3px, 3px apart, Rest Grey) closes the page.
+
+### Components
+
+#### The rest (signature)
+
+The count of what Tacet silenced, set as a multi-measure rest at the right of the host: a thick bar between two strokes on a staff line, 64px by 48px, its Tacet Figures numeral above. It has three states, all of them colour and fill on the same shape. **Acted**: solid lime bar with the engraving-white count. **Watching** (on, nothing silenced yet): the bar drawn as a lime 1.5px outline, with no figure. **Off**: the outline in Rest Grey, with no figure. When there is no web page the rest is hidden but keeps its space. Switching the site on turns the rest from grey to lime in place. It is `aria-hidden`; the state sentence carries the meaning.
+
+#### The segmented control
+
+Where Tacet runs: three real radio inputs in a fieldset (legend visually hidden), drawn as a 34px well (Raised Folder, 1px Staff Hairline border, 9px corners, 3px padding) with three equal labels: Chosen sites, All sites, Off. A single Selected Folder block (6px corners) sits under the checked label and slides to it. Unselected labels are Folder Grey 500 and turn engraving white on hover. The selected label is engraving white 600. Focus draws a 2px lime outline inset 1px on the label. A 12px Folder Grey hint under it explains the chosen mode.
+
+#### Switch rows
+
+The label on the left and the switch on the right, 44px minimum, 9px vertical padding, with the whole row as the hit target and a Staff Hairline between rows. The switch is a real checkbox with `role="switch"` over a 44px by 26px pill. Off, the track is Folder Edge and the thumb Folder Grey. On, the track is lime and the thumb Folder Black, slid 18px. A disabled switch fades to 35% opacity and its row label turns Folder Grey. Focus draws a 2px lime ring at 2px offset around the track.
+
+#### Buttons
+
+Two equal buttons, 34px tall, 8px corners, 600 at 13px, with no icons and no uppercase.
+
+- **Primary (Zap now):** an engraving-white fill with folder-black text. Hover goes to #ffffff and press to #d9d8d1.
+- **Secondary (Undo on this page):** transparent with a 1px Folder Edge border and engraving-white text. Hover takes a Raised Folder fill with a Folder Grey border, and press takes Selected Folder.
+- **Disabled:** transparent, Staff Hairline border, Rest Grey text, default cursor.
+- **Focus:** a 2px lime outline at 2px offset.
+
+#### The change list
+
+What Tacet did, one change per row on a Staff Hairline, like bars on a staff. Each row has its italic number, uppercase kind, monospace selector and tabular time on one baseline, with the reason in 12px Folder Grey under it (two lines at most). The list scrolls inside the popup's height cap with a thin Rest Grey scrollbar. **More below:** while rows remain under the fold, the last 32px of the list fade to transparent (a mask, not an overlay), and the fade lifts once the list is scrolled to its end. The list region is `aria-live="polite"`.
+
+#### The final double bar and the debug row
+
+The page ends as a part ends: a final double bar (a 1px line, then a 3px line, in Rest Grey) 14px under the list. Under it sits the quiet debug row, a switch row with no minimum height, 6px top padding and 12px Folder Grey text, so it reads as small print after the last bar.
+
+#### Motion
+
+Switch thumbs, switch track colours and the selected segment move over 180ms ease-out. Segment label colour, button fill and border, and the rest bar's colour share the same 180ms. Nothing else animates: no entrances, no counters, no fades beyond the list's static mask. Under `prefers-reduced-motion` every transition is off.
+
+### Do's and Don'ts
+
+#### Do:
+
+- **Do** keep the popup dark only: folder black (#141513) ground, engraving white (#ecebe5) text, `color-scheme: dark`.
+- **Do** keep lime (#d5ed75) for live state only: a switch on, the rest while Tacet acts or watches, focus.
+- **Do** count what Tacet silenced as the rest with its Tacet Figures numeral, and change its state in place by colour and fill.
+- **Do** set secondary text in Folder Grey (#8f9288) and keep Rest Grey (#7d8076) for marks, disabled text and the double bar.
+- **Do** put each switch on the right of a 44px row whose whole width toggles it.
+- **Do** rule rows with 1px Staff Hairlines (#262824) and close the page on the final double bar.
+- **Do** keep monospace for selectors and tabular numerals for times and row numbers.
+- **Do** move only switch thumbs, track colours and the selected segment, over 180ms ease-out, and nothing under reduced motion.
+- **Do** ship every font inside the package; the popup makes no network requests.
+
+#### Don't:
+
+- **Don't** add a light theme or follow the system's colour scheme.
+- **Don't** use lime as text, as a button fill or as decoration.
+- **Don't** carry the website's paper, ink, unpressed keys or wash into the popup, or the popup's folder palette onto the site.
+- **Don't** set any figure other than the count in Tacet Figures, or any text other than selectors in monospace.
+- **Don't** add a power button, a "blocked" badge or icons to buttons.
+- **Don't** add shadows for depth; step from folder to Raised Folder to Selected Folder instead.
