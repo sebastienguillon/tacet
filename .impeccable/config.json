@@ -21,6 +21,46 @@
         ],
         "createdAt": "2026-11-28T13:45:11.197Z",
         "reason": "User's recorded choice (DESIGN.md, The Family Rule): the site's ground is the sg-x family paper #f6f5ef, inherited value for value and never retuned"
+      },
+      {
+        "rule": "design-system-color",
+        "value": "rgb(255, 255, 255)",
+        "files": [
+          "docs/fr/index.html",
+          "docs/index.html"
+        ],
+        "createdAt": "2026-11-28T14:17:42.817Z",
+        "reason": "Agent: DESIGN.md keeps the demo newspaper's white ground inside the demo frame; .frame iframe paints #fff behind it"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "docs/fr/index.html",
+          "docs/index.html"
+        ],
+        "createdAt": "2026-11-28T14:17:46.662Z",
+        "reason": "Agent: computed padding-top is 22px on .layers li and 26px on .never li under their hairline (padding-block); the detector misses the inset"
+      },
+      {
+        "rule": "low-contrast",
+        "value": "*",
+        "files": [
+          "docs/fr/index.html",
+          "docs/index.html"
+        ],
+        "createdAt": "2026-11-28T14:17:46.854Z",
+        "reason": "Agent: the unpressed keys render at 33.6-102px, weight 750 (WCAG large text, 3:1 applies); #868b73 on #f6f5ef measures 3.23:1, and DESIGN.md makes the unpressed key pale on purpose"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "docs/fr/index.html",
+          "docs/index.html"
+        ],
+        "createdAt": "2026-11-28T14:17:47.045Z",
+        "reason": "User's recorded choice (DESIGN.md, The Family Rule): the site's ground is the sg-x family paper #f6f5ef, inherited value for value and never retuned"
       }
     ]
   }
