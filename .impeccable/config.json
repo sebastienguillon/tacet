@@ -5,5 +5,23 @@
       "maxFindings": 5,
       "maxChars": 8000
     }
+  },
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "docs/fr/aide.html",
+          "docs/fr/confidentialite.html",
+          "docs/privacy.html",
+          "docs/support.html"
+        ],
+        "createdAt": "2026-11-28T13:45:11.197Z",
+        "reason": "User's recorded choice (DESIGN.md, The Family Rule): the site's ground is the sg-x family paper #f6f5ef, inherited value for value and never retuned"
+      }
+    ]
   }
 }
